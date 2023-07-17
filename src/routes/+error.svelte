@@ -13,6 +13,6 @@
 
 <p>{error?.message}</p>
 
-{#if dev && error?.stack}
+<!-- {#if dev && error?.stack}
 	<pre>{error?.stack}</pre>
-{/if}
+{/if} -->
