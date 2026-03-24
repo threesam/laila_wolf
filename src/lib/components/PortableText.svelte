@@ -8,34 +8,32 @@
 </section>
 
 <style lang="scss">
-	:global {
-		.portable-text {
-			h1,
-			h2,
-			h3,
-			h4,
-			h5 {
-				padding-bottom: 0.5rem;
-				font-weight: 800;
+	:global(.portable-text) {
+		:global(h1),
+		:global(h2),
+		:global(h3),
+		:global(h4),
+		:global(h5) {
+			padding-bottom: 0.5rem;
+			font-weight: 800;
 
-				@apply text-pink-100;
-			}
-			ul,
-			p {
-				@apply pb-5;
-			}
+			@apply text-pink-100;
+		}
+		:global(ul),
+		:global(p) {
+			@apply pb-5;
+		}
 
-			a {
-				@apply border-b-2 border-pink-200 transition-all duration-100;
+		:global(a) {
+			@apply border-b-2 border-pink-200 transition-all duration-100;
 
-				&:hover {
-					@apply border-transparent pb-1 text-pink-200;
-				}
+			&:hover {
+				@apply border-transparent pb-1 text-pink-200;
 			}
+		}
 
-			blockquote {
-				@apply border-2 border-black bg-pink-200 p-5 text-sm text-dark sm:p-10 md:text-lg;
-			}
+		:global(blockquote) {
+			@apply border-2 border-black bg-pink-200 p-5 text-sm text-dark sm:p-10 md:text-lg;
 		}
 	}
 </style>
