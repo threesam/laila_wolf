@@ -1,6 +1,7 @@
 <script lang="ts">
-	export let blocks: any[] = []
 	import { PortableText } from '@portabletext/svelte'
+
+	let { blocks = [] }: { blocks?: any[] } = $props()
 </script>
 
 <section class="portable-text mx-auto max-w-2xl">

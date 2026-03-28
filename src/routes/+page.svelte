@@ -7,7 +7,7 @@
 	import { urlFor } from '$lib/utils/sanity'
 	import type { PageData } from './$types'
 
-	export let data: PageData
+	let { data }: { data: PageData } = $props()
 
 	// filter out circular reference to this page
 	const links = data.settings.founders[0].links.filter(
@@ -42,7 +42,7 @@
 			alt="homepage hero"
 		/>
 	</figure>
-	<div class=" bg-gradient-fade absolute inset-0 opacity-60" />
+	<div class=" bg-gradient-fade absolute inset-0 opacity-60"></div>
 	<a class="z-0 w-full" href="#subscribe">
 		<h1
 			class="font-display flex w-full justify-center gap-10 font-bold transition-all duration-500

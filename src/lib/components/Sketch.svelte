@@ -2,8 +2,8 @@
 	import P5 from 'p5-svelte'
 	import type { Sketch } from 'p5-svelte'
 
-	let width: number
-	let height: number
+	let width = $state(0)
+	let height = $state(0)
 
 	type Point = {
 		x: number

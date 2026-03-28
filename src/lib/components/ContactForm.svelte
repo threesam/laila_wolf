@@ -1,7 +1,7 @@
 <script>
-	let email
-	let name
-	let message
+	let email = $state('')
+	let name = $state('')
+	let message = $state('')
 </script>
 
 <form

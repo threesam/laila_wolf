@@ -1,7 +1,7 @@
 <script>
 	import { Hr, Html, Text } from 'svelte-email'
 
-	export let message = ''
+	let { message = '' } = $props()
 </script>
 
 <Html lang="en">

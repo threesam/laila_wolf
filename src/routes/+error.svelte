@@ -1,18 +1,11 @@
 <script>
-	export let status
-	export let error
-
-	const dev = process.env.NODE_ENV === 'development'
+	import { page } from '$app/state'
 </script>
 
 <svelte:head>
-	<title>{status}</title>
+	<title>{page.status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<h1>{page.status}</h1>
 
-<p>{error?.message}</p>
-
-<!-- {#if dev && error?.stack}
-	<pre>{error?.stack}</pre>
-{/if} -->
+<p>{page.error?.message}</p>
