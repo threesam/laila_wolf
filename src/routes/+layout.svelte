@@ -29,6 +29,8 @@
 		image: heroImage,
 		jobTitle: 'Filmmaker',
 		description: data?.settings?.description ?? 'Filmmaker. Romance with something underneath.',
+		knowsAbout: ['Filmmaking', 'Screenwriting', 'Directing', 'Producing'],
+		...(founder?.contact ? { email: founder.contact } : {}),
 		sameAs: (founder?.links ?? [])
 			.map((l: { href: string }) => l.href.trim())
 			.filter((href: string) => {
