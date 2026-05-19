@@ -47,9 +47,17 @@
 	</figure>
 	<div class="bg-gradient-fade absolute inset-0 opacity-60"></div>
 	<div class="z-0 flex w-full flex-col items-center gap-4 px-5">
-		<a class="w-full" href="#subscribe">
+		<a
+			class="w-full"
+			href="#subscribe"
+			onclick={(e) => {
+				e.preventDefault()
+				document.getElementById('subscribe')?.scrollIntoView({ behavior: 'smooth' })
+				setTimeout(() => document.getElementById('email')?.focus({ preventScroll: true }), 700)
+			}}
+		>
 			<h1
-				class="font-display flex w-full justify-center gap-10 font-bold transition-all duration-500 lg:grid lg:grid-cols-2 lg:text-8xl lg:hover:gap-5"
+				class="font-display flex w-full justify-center gap-10 font-bold lg:grid lg:grid-cols-2 lg:text-8xl"
 			>
 				<span class="text-gray-300 lg:text-right">Laila</span>
 				<span class="text-gray-300 lg:text-left">Wolf</span>
