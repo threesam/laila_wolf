@@ -38,8 +38,12 @@
 	<figure class="bg-dark absolute inset-0 h-full w-full p-5 sm:p-10 lg:p-20">
 		<img
 			class="h-full w-full border-2 object-cover"
-			src={urlFor(data.settings.image.asset.url).auto('format').url()}
+			src={urlFor(data.settings.image.asset.url).width(1600).auto('format').url()}
 			alt="homepage hero"
+			width="1600"
+			height="2400"
+			fetchpriority="high"
+			decoding="sync"
 		/>
 	</figure>
 	<div class=" bg-gradient-fade absolute inset-0 opacity-60" />
@@ -60,7 +64,11 @@
 		<img
 			class="border-dark h-full w-full grayscale"
 			src={urlFor(data.settings.founders[0].image.asset.url).size(900, 900).auto('format').url()}
-			alt={data.settings.founders[0].image}
+			alt="Laila Wolf"
+			width="900"
+			height="900"
+			loading="lazy"
+			decoding="async"
 		/>
 	</figure>
 	<div class="bg-gradient-3 text-dark grid place-content-center p-5 py-20 sm:p-10 lg:p-20">
