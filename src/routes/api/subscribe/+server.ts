@@ -1,50 +1,31 @@
-import client from '@mailchimp/mailchimp_marketing'
 import { env } from '$env/dynamic/private'
-import { error } from '@sveltejs/kit'
+import { error, json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
 
-// configure mailchimp client
-client.setConfig({
-	apiKey: env.MAILCHIMP_API_KEY,
-	server: env.MAILCHIMP_SERVER_PREFIX
-})
+export const POST: RequestHandler = async ({ request }) => {
+	const { email, name } = (await request.json()) as { email?: string; name?: string }
 
-export async function GET({ url }) {
-	const { searchParams } = new URL(url)
+	if (!email) error(400, 'email required')
 
-	if (searchParams.get('i_will_allow_it')) {
-		const response = await client.lists.getListMembersInfo(env.MAILCHIMP_LIST_ID)
+	const url = env.LISTMONK_URL
+	const listUuid = env.LISTMONK_LIST_UUID
+	if (!url || !listUuid) error(500, 'newsletter not configured')
 
-		return new Response(JSON.stringify(response, null, 2))
-	}
-}
+	const res = await fetch(`${url.replace(/\/$/, '')}/api/public/subscription`, {
+		method: 'POST',
+		headers: { 'content-type': 'application/json' },
+		body: JSON.stringify({
+			email,
+			name: name ?? email.split('@')[0],
+			list_uuids: [listUuid],
+		}),
+	})
 
-export async function POST({ request }) {
-	const { email } = await request.json()
-	console.log('email: ', email)
-
-	let event
-	// create member
-	try {
-		event = await client.lists.setListMember(env.MAILCHIMP_LIST_ID, email, {
-			email_address: email,
-			status_if_new: 'pending',
-			status: 'pending',
-		})
-	} catch (e: any) {
-		console.error(e)
+	if (!res.ok) {
+		const body = await res.text().catch(() => '')
+		console.error('listmonk', res.status, body)
+		error(502, 'newsletter signup failed')
 	}
 
-	if (!event) {
-		try {
-			event = await client.lists.addListMember(env.MAILCHIMP_LIST_ID, {
-				email_address: email,
-				status: 'pending'
-			})
-		} catch (e: any) {
-			console.error(e)
-		}
-	}
-
-	console.log({ email, event })
-	return new Response(JSON.stringify({ email, event }, null, 2))
+	return json({ ok: true })
 }
