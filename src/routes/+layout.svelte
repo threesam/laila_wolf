@@ -10,7 +10,8 @@
 	import type { Snippet } from 'svelte'
 
 	const SFW_URL = 'https://skeletonflowersandwater.com'
-	const DEFAULT_HOSTNAME = 'lailawolf.com'
+	// Sanity stores `hostname` as a bare slug ('lailawolf', not 'lailawolf.com').
+	const DEFAULT_HOSTNAME = 'lailawolf'
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props()
 
@@ -28,7 +29,7 @@
 			.map((l: { href: string }) => l.href.trim())
 			.filter((href: string) => {
 				try {
-					return !new URL(href).hostname.endsWith(own)
+					return !new URL(href).hostname.startsWith(own)
 				} catch {
 					return false
 				}
