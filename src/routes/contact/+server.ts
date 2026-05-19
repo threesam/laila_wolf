@@ -1,32 +1,31 @@
 import { env } from '$env/dynamic/private'
-
 import nodemailer from 'nodemailer'
-// import { render } from 'svelte-email';
-// import Contact from '$lib/emails/Contact.svelte';
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
 
-export async function POST({ request }) {
+export const POST: RequestHandler = async ({ request }) => {
 	const values = await request.formData()
-	console.log('🚀 ~ file: +server.ts:7 ~ POST ~ values:', values)
 
 	const transporter = nodemailer.createTransport({
 		host: env.SMTP_SERVER,
-		port: env.SMTP_SERVER_PORT,
+		port: Number(env.SMTP_SERVER_PORT),
 		secure: false,
 		auth: {
 			user: env.SMTP_USERNAME,
-			pass: env.SMTP_PASSWORD
-		}
+			pass: env.SMTP_PASSWORD,
+		},
 	})
 
-	const options = {
-		from: values.get('email'),
+	const fromValue = values.get('email')
+	await transporter.sendMail({
+		from: typeof fromValue === 'string' ? fromValue : undefined,
 		to: 'sam@threesam.com',
 		subject: 'hello world',
 		html: `<html>
 			<p>name: ${values.get('name')}</p>
 			<p>message: ${values.get('message')}</p>
-		</html>`
-	}
+		</html>`,
+	})
 
-	transporter.sendMail(options)
+	return json({ ok: true })
 }

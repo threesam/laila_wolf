@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 @font-face {
 	font-family: 'PoiretOne';
 	font-display: swap;
@@ -7,21 +9,47 @@
 @font-face {
 	font-family: 'Montserrat';
 	font-display: swap;
-	src: url('$lib/assets/fonts/Montserrat-VariableFont_wght.ttf'),
+	src:
+		url('$lib/assets/fonts/Montserrat-VariableFont_wght.ttf'),
 		url('$lib/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf');
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+	--color-primary: rgb(183, 198, 175);
+	--color-svelte-orange: #ff3e00;
+	--color-svelte-dark: #f03a00;
+	--color-beige: #d2b097;
+	--color-hot-pink: #ff1966;
+	--color-dark: #111111;
+	--color-light: #fafafa;
 
-@layer utilities {
-	.clip-path-top {
-		clip-path: polygon(0 6rem, 100% 0, 100% calc(100% - 6rem), 0 100%);
-	}
-	.clip-path-bottom {
-		clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6rem), 0 100%);
-	}
+	--font-display: 'PoiretOne', monospace;
+	--font-sans: 'Montserrat', sans-serif;
+	--font-mono: monospace;
+}
+
+@utility bg-gradient-fade {
+	background-image: linear-gradient(180deg, #000, transparent);
+}
+
+@utility bg-gradient-3 {
+	background-image:
+		radial-gradient(circle at top left, rgba(19, 19, 19, 0.55), transparent 80%),
+		radial-gradient(circle at top right, rgba(33, 48, 25, 0.75), transparent 100%),
+		radial-gradient(at bottom left, rgba(33, 48, 25, 0.75), transparent 100%),
+		radial-gradient(at bottom right, rgba(19, 19, 19, 0.55), transparent 80%);
+}
+
+@utility clip-path-top {
+	clip-path: polygon(0 6rem, 100% 0, 100% calc(100% - 6rem), 0 100%);
+}
+
+@utility clip-path-bottom {
+	clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6rem), 0 100%);
+}
+
+@utility list-roman {
+	list-style-type: upper-roman;
 }
 
 @layer base {

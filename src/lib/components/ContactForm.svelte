@@ -1,7 +1,7 @@
-<script>
-	let email
-	let name
-	let message
+<script lang="ts">
+	let email = ''
+	let name = ''
+	let message = ''
 </script>
 
 <form

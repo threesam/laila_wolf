@@ -1,6 +1,7 @@
 <script lang="ts">
-	export let blocks: any[] = []
-	import { PortableText } from '@portabletext/svelte'
+	import { PortableText, type InputValue } from '@portabletext/svelte'
+
+	export let blocks: InputValue = []
 </script>
 
 <section class="portable-text mx-auto max-w-2xl">
@@ -8,34 +9,33 @@
 </section>
 
 <style lang="scss">
-	:global {
-		.portable-text {
-			h1,
-			h2,
-			h3,
-			h4,
-			h5 {
-				padding-bottom: 0.5rem;
-				font-weight: 800;
+	@reference '../../app.css';
 
-				@apply text-pink-100;
-			}
-			ul,
-			p {
-				@apply pb-5;
-			}
+	:global(.portable-text) {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			padding-bottom: 0.5rem;
+			font-weight: 800;
+			@apply text-pink-100;
+		}
+		ul,
+		p {
+			@apply pb-5;
+		}
 
-			a {
-				@apply border-b-2 border-pink-200 transition-all duration-100;
+		a {
+			@apply border-b-2 border-pink-200 transition-all duration-100;
 
-				&:hover {
-					@apply border-transparent pb-1 text-pink-200;
-				}
+			&:hover {
+				@apply border-transparent pb-1 text-pink-200;
 			}
+		}
 
-			blockquote {
-				@apply border-2 border-black bg-pink-200 p-5 text-sm text-dark sm:p-10 md:text-lg;
-			}
+		blockquote {
+			@apply text-dark border-2 border-black bg-pink-200 p-5 text-sm sm:p-10 md:text-lg;
 		}
 	}
 </style>

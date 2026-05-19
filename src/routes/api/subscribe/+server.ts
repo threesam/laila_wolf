@@ -26,7 +26,9 @@ export async function POST({ request }) {
 	// create member
 	try {
 		event = await client.lists.setListMember(env.MAILCHIMP_LIST_ID, email, {
-			status: 'pending'
+			email_address: email,
+			status_if_new: 'pending',
+			status: 'pending',
 		})
 	} catch (e: any) {
 		console.error(e)
