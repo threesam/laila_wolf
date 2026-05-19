@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PortableText from '$lib/components/PortableText.svelte'
+	import Sketch from '$lib/components/Sketch.svelte'
 	import SEO from 'svelte-seo'
 	import { urlFor } from '$lib/utils/sanity'
 	import type { PageData } from './$types'
@@ -11,10 +12,22 @@
 
 <SEO title="About — Laila Wolf" description="About Laila Wolf." />
 
-<section class="mx-auto max-w-3xl px-5 py-16 lg:py-24">
-	<a class="text-light/60 hover:text-light text-sm uppercase tracking-widest" href="/">← back</a>
+<!-- ABOUT HERO — sketch background + thin pink-outlined title block -->
+<section class="relative w-full">
+	<div class="relative grid place-content-center py-20">
+		<h1
+			class="bg-dark z-10 grid place-content-center p-5 text-4xl font-bold tracking-widest text-gray-300 shadow-md shadow-pink-200 lg:p-10 lg:text-7xl"
+		>
+			About
+		</h1>
+		<div class="absolute inset-0 rotate-180 overflow-hidden">
+			<Sketch />
+		</div>
+	</div>
+</section>
 
-	<h1 class="font-display mt-6 text-5xl lg:text-7xl">Laila Wolf</h1>
+<section class="mx-auto max-w-3xl px-5 py-12 lg:py-16">
+	<a class="text-light/60 hover:text-light text-sm uppercase tracking-widest" href="/">← back</a>
 
 	{#if founder?.image?.asset?.url}
 		<figure class="my-10 aspect-square max-w-md overflow-hidden bg-pink-200">
