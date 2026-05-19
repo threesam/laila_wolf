@@ -1,14 +1,13 @@
 <script lang="ts">
+	import type { Component } from 'svelte'
+	import { scale } from 'svelte/transition'
+
 	interface Link {
 		title: string
 		href: string
 	}
 
-	import { scale } from 'svelte/transition'
-
-	export let color = '#b7c6af'
-	export let size = 69
-	export let links: Link[] = []
+	let { color = '#b7c6af', size = 69, links = [] }: { color?: string; size?: number; links?: Link[] } = $props()
 
 	import Backstage from './icons/Backstage.svelte'
 	import Facebook from './icons/Facebook.svelte'
@@ -20,7 +19,7 @@
 	import Youtube from './icons/Youtube.svelte'
 	import Message from './icons/Message.svelte'
 
-	const options = [
+	const options: { title: string; component: Component<{ color?: string; width?: number; height?: number }> }[] = [
 		{ title: 'facebook', component: Facebook },
 		{ title: 'backstage', component: Backstage },
 		{ title: 'imdb', component: Imdb },
@@ -39,6 +38,7 @@
 {#if links?.length}
 	<div class="grid grid-cols-3 items-center justify-between gap-5 lg:flex">
 		{#each links as { href, title }, i}
+			{@const IconComponent = getIconComponent(title)}
 			<a
 				style={`color: ${color};`}
 				class="flex items-center overflow-hidden rounded-md transition duration-300 hover:scale-90"
@@ -46,7 +46,9 @@
 				{href}
 				aria-label={title}
 			>
-				<svelte:component this={getIconComponent(title)} {color} width={size} height={size} />
+				{#if IconComponent}
+					<IconComponent {color} width={size} height={size} />
+				{/if}
 			</a>
 		{/each}
 	</div>

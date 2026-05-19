@@ -1,7 +1,5 @@
 <script>
-	export let width = 20
-	export let height = 20
-	export let color = 'var(--textColor)'
+	let { width = 20, height = 20, color = 'var(--textColor)' } = $props()
 </script>
 
 <svg
