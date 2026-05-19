@@ -1,9 +1,19 @@
 <script lang="ts">
-	let { data }: { data: Record<string, unknown> | Record<string, unknown>[] } = $props()
+	let { data }: { data: Record<string, unknown> } = $props()
 
-	let payload = $derived(Array.isArray(data) ? data : { '@context': 'https://schema.org', ...data })
+	// Escape `<` (closes <script>), plus U+2028/U+2029 (valid JSON, but
+	// terminate JS lines and would corrupt the inline <script>).
+	const UNSAFE = new RegExp('[<\\u2028\\u2029]', 'g')
+
+	let payload = $derived({ '@context': 'https://schema.org', ...data })
+	let serialized = $derived(
+		JSON.stringify(payload).replace(
+			UNSAFE,
+			(c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'),
+		),
+	)
 </script>
 
 <svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify(payload).replace(/</g, '\\u003c')}</script>`}
+	{@html `<script type="application/ld+json">${serialized}</script>`}
 </svelte:head>
