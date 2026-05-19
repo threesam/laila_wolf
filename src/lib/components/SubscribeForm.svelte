@@ -1,15 +1,19 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
 
-	let { endpoint = '/api/subscribe' }: { endpoint?: string } = $props()
+	let { endpoint = '/api/subscribe', inputId = 'email' }: { endpoint?: string; inputId?: string } =
+		$props()
 
 	let email = $state('')
 	let status = $state<'idle' | 'submitting' | 'ok' | 'error'>('idle')
 	let message = $state('')
 
+	// HTML5 valid + non-empty
+	let isValid = $derived(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+
 	async function submit(e: SubmitEvent) {
 		e.preventDefault()
-		if (status === 'submitting') return
+		if (status === 'submitting' || !isValid) return
 		status = 'submitting'
 		try {
 			const res = await fetch(endpoint, {
@@ -37,11 +41,11 @@
 	class="flex max-w-full flex-grow flex-col gap-10 lg:flex-row lg:gap-0"
 	onsubmit={submit}
 >
-	<label class="relative" for="email">
+	<label class="relative" for={inputId}>
 		<input
 			type="email"
 			name="email"
-			id="email"
+			id={inputId}
 			required
 			placeholder="enter email"
 			bind:value={email}
@@ -56,8 +60,12 @@
 	</label>
 	<button
 		type="submit"
-		disabled={status === 'submitting'}
-		class="text-dark border-2 border-gray-300 bg-gray-300 p-5 disabled:opacity-60 lg:border-none lg:pl-5"
+		disabled={status === 'submitting' || !isValid}
+		class={`text-dark border-2 p-5 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 lg:pl-5 ${
+			isValid && status === 'idle'
+				? 'border-pink-300 bg-pink-300'
+				: 'border-gray-300 bg-gray-300 lg:border-none'
+		}`}
 	>
 		{status === 'submitting' ? '…' : 'subscribe'}
 	</button>
