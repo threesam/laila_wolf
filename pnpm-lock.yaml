@@ -35,9 +35,6 @@ importers:
       '@types/nodemailer':
         specifier: 8.0.0
         version: 8.0.0
-      '@types/p5':
-        specifier: 1.7.7
-        version: 1.7.7
       '@vercel/analytics':
         specifier: 2.0.1
         version: 2.0.1(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.13(@types/node@25.9.0)(jiti@2.7.0)(sass@1.99.0)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.13(@types/node@25.9.0)(jiti@2.7.0)(sass@1.99.0)))(svelte@5.55.8)
@@ -50,9 +47,6 @@ importers:
       nodemailer:
         specifier: 8.0.7
         version: 8.0.7
-      p5-svelte:
-        specifier: 3.1.2
-        version: 3.1.2(@types/p5@1.7.7)(p5@1.11.13)
       prettier:
         specifier: 3.8.3
         version: 3.8.3
@@ -728,9 +722,6 @@ packages:
   '@types/nodemailer@8.0.0':
     resolution: {integrity: sha512-fyf8jWULsCo0d0BuoQ75i6IeoHs47qcqxWc7yUdUcV0pOZGjUTTOvwdG1PRXUDqN/8A64yQdQdnA2pZgcdi+cA==}
 
-  '@types/p5@1.7.7':
-    resolution: {integrity: sha512-WFuP7jqc5CkkMtCK/NphgvMnJz1Qi9CMuK7t6xLu/tuXkRdGQA4q4AD0dUYcChC0Oibe8PE8gbKSFPNF0BqVNw==}
-
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
@@ -1227,15 +1218,6 @@ packages:
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
-
-  p5-svelte@3.1.2:
-    resolution: {integrity: sha512-lcfWh+cJ1/wRdIXHnjpYmDgj2h3TCy1QJVQnf/cBcFWS8CSkvyAN5F8u8H2U8qBUtZ4XaD3nd+1NoYUMHaMExQ==}
-    peerDependencies:
-      '@types/p5': ^1.4.2
-      p5: ^1.4.0
-
-  p5@1.11.13:
-    resolution: {integrity: sha512-gfGo4AkyuNMs6Ko7UNFM9K2edqFRGyLrFaYUB+XXF127JVdEPu0BIaC5uDDNJpsRMOD9hJMUpsOH4HkfuNhvhA==}
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -2022,8 +2004,6 @@ snapshots:
     dependencies:
       '@types/node': 25.9.0
 
-  '@types/p5@1.7.7': {}
-
   '@types/trusted-types@2.0.7': {}
 
   '@vercel/analytics@2.0.1(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.13(@types/node@25.9.0)(jiti@2.7.0)(sass@1.99.0)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.13(@types/node@25.9.0)(jiti@2.7.0)(sass@1.99.0)))(svelte@5.55.8)':
@@ -2453,13 +2433,6 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
-
-  p5-svelte@3.1.2(@types/p5@1.7.7)(p5@1.11.13):
-    dependencies:
-      '@types/p5': 1.7.7
-      p5: 1.11.13
-
-  p5@1.11.13: {}
 
   path-exists@4.0.0: {}
 

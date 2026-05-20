@@ -1,85 +1,127 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 
-	let width = $state(0)
-	let height = $state(0)
-	let visible = $state(false)
-	let container = $state<HTMLDivElement | null>(null)
-
-	onMount(() => {
-		if (!container) return
-		const io = new IntersectionObserver(
-			(entries) => {
-				for (const e of entries) {
-					if (e.isIntersecting) {
-						visible = true
-						io.disconnect()
-					}
-				}
-			},
-			{ rootMargin: '200px' }
-		)
-		io.observe(container)
-		return () => io.disconnect()
-	})
-
 	type Point = {
 		x: number
 		y: number
 		size: number
-		color: number[]
+		color: [number, number, number]
 	}
 
-	let component = $state<typeof import('p5-svelte').default | null>(null)
-	let sketch = $state<import('p5-svelte').Sketch | null>(null)
+	let container = $state<HTMLDivElement | null>(null)
+	let canvas = $state<HTMLCanvasElement | null>(null)
 
-	$effect(() => {
-		if (visible && !component) {
-			import('p5-svelte').then((mod) => {
-				component = mod.default
-				sketch = (p5) => {
-					const points: Point[] = []
-					p5.setup = () => {
-						p5.createCanvas(width, height)
-						for (let i = 0; i < 200; i++) {
-							const size = p5.random(3, 20)
-							const x = p5.random(width - size)
-							const y = p5.random(height)
-							const color = p5.random() > 0.5 ? [183, 198, 175] : [56, 80, 69]
-							let collision = false
-							for (const point of points) {
-								if (p5.dist(x, y, point.x, point.y) < 25) collision = true
-							}
-							if (!collision) points.push({ x, y, size, color })
-						}
-					}
-					p5.draw = () => {
-						p5.frameRate(30)
-						p5.background(17, 17, 17)
-						for (const point of points) {
-							const { x, y, size, color } = point
-							if (y < -size) point.y = height + size
-							else point.y -= 1
-							p5.stroke(color[0] ?? 0, color[1] ?? 0, color[2] ?? 0)
-							p5.fill(17, 17, 17)
-							p5.strokeWeight(2)
-							p5.circle(x, y, size)
-						}
+	onMount(() => {
+		if (!container || !canvas) return
+
+		// Respect prefers-reduced-motion — render a single static frame, no animation.
+		const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+		const reduce = motionQuery.matches
+
+		const ctx = canvas.getContext('2d')
+		if (!ctx) return
+
+		let width = 0
+		let height = 0
+		let points: Point[] = []
+		let rafId = 0
+		let started = false
+		let cleanups: Array<() => void> = []
+
+		const dpr = Math.min(window.devicePixelRatio || 1, 2)
+
+		function seed(w: number, h: number) {
+			points = []
+			for (let i = 0; i < 200; i++) {
+				const size = 3 + Math.random() * 17
+				const x = Math.random() * (w - size)
+				const y = Math.random() * h
+				const color: [number, number, number] =
+					Math.random() > 0.5 ? [183, 198, 175] : [56, 80, 69]
+				let collision = false
+				for (const p of points) {
+					const dx = x - p.x
+					const dy = y - p.y
+					if (dx * dx + dy * dy < 625) {
+						collision = true
+						break
 					}
 				}
-			})
+				if (!collision) points.push({ x, y, size, color })
+			}
+		}
+
+		function resize() {
+			if (!canvas || !container) return
+			width = container.clientWidth
+			height = container.clientHeight
+			canvas.width = Math.floor(width * dpr)
+			canvas.height = Math.floor(height * dpr)
+			canvas.style.width = `${width}px`
+			canvas.style.height = `${height}px`
+			ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+			seed(width, height)
+		}
+
+		function draw() {
+			if (!ctx) return
+			ctx.fillStyle = '#111'
+			ctx.fillRect(0, 0, width, height)
+			ctx.lineWidth = 2
+			for (const p of points) {
+				if (p.y < -p.size) p.y = height + p.size
+				else if (!reduce) p.y -= 1
+				ctx.strokeStyle = `rgb(${p.color[0]}, ${p.color[1]}, ${p.color[2]})`
+				ctx.fillStyle = '#111'
+				ctx.beginPath()
+				ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2)
+				ctx.fill()
+				ctx.stroke()
+			}
+			if (!reduce) rafId = requestAnimationFrame(draw)
+		}
+
+		function start() {
+			if (started) return
+			started = true
+			resize()
+			const onResize = () => resize()
+			window.addEventListener('resize', onResize)
+			cleanups.push(() => window.removeEventListener('resize', onResize))
+			// First paint via rIC so we don't compete with LCP; fall back to setTimeout.
+			const kickoff = () => {
+				rafId = requestAnimationFrame(draw)
+			}
+			const ric = (
+				window as Window & {
+					requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number
+				}
+			).requestIdleCallback
+			if (ric) ric(kickoff, { timeout: 800 })
+			else setTimeout(kickoff, 250)
+		}
+
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const e of entries) {
+					if (e.isIntersecting) {
+						start()
+						io.disconnect()
+					}
+				}
+			},
+			{ rootMargin: '200px' },
+		)
+		io.observe(container)
+		cleanups.push(() => io.disconnect())
+
+		return () => {
+			cancelAnimationFrame(rafId)
+			for (const fn of cleanups) fn()
 		}
 	})
 </script>
 
-<div
-	bind:this={container}
-	bind:clientWidth={width}
-	bind:clientHeight={height}
-	class="absolute inset-0 overflow-hidden bg-[#111]"
->
-	{#if visible && component && sketch}
-		{@const C = component}
-		<C {sketch} />
-	{/if}
+<div bind:this={container} class="absolute inset-0 overflow-hidden bg-[#111]">
+	<canvas bind:this={canvas} aria-hidden="true" class="block h-full w-full"></canvas>
 </div>
