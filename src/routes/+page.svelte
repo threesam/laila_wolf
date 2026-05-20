@@ -60,7 +60,7 @@
 		<p
 			class="text-center text-sm font-medium uppercase tracking-[0.3em] text-white lg:text-base"
 		>
-			Filmmaker — romance with something underneath
+			Filmmaker — ghostwriter
 		</p>
 	</div>
 
