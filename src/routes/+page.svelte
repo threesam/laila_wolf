@@ -33,22 +33,19 @@
 />
 
 <!-- HERO -->
-<section id="hero" class="group relative flex h-screen w-full items-center justify-center">
-	<figure class="bg-dark absolute inset-0 h-full w-full p-5 sm:p-10 lg:p-20">
-		<img
-			class="h-full w-full border-2 object-cover grayscale transition-[filter] duration-700 group-hover:grayscale-0"
-			src={urlFor(data.settings.image.asset.url).width(1600).auto('format').url()}
-			alt="Laila Wolf"
-			width="1600"
-			height="2400"
-			fetchpriority="high"
-			decoding="sync"
-		/>
-	</figure>
-	<div class="bg-gradient-fade absolute inset-0 opacity-80"></div>
-	<div class="z-0 flex w-full flex-col items-center gap-4 px-5">
+<section
+	id="hero"
+	class="relative flex h-screen w-full items-center justify-center overflow-hidden"
+>
+	<!-- Textbox (peer + group): hovering here drives both the scrim fade and the image desaturation. -->
+	<div
+		class="peer group relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-10 py-12"
+	>
+		<div
+			class="bg-dark/60 pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-out group-hover:opacity-0"
+		></div>
 		<a
-			class="w-full"
+			class="relative w-full"
 			href="#subscribe"
 			onclick={(e) => {
 				e.preventDefault()
@@ -64,12 +61,26 @@
 			</h1>
 		</a>
 		<p
-			class="text-center text-sm font-medium uppercase tracking-[0.3em] text-white lg:text-base"
-			style="text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 0 2px rgba(0,0,0,0.9);"
+			class="relative text-center text-sm font-medium uppercase tracking-[0.3em] text-white lg:text-base"
 		>
 			Filmmaker — romance with something underneath
 		</p>
 	</div>
+
+	<!-- Image must be a sibling AFTER the peer so peer-hover propagates. -->
+	<figure
+		class="bg-dark absolute inset-0 z-0 h-full w-full p-5 sm:p-10 lg:p-20 peer-hover:[&_img]:grayscale-0"
+	>
+		<img
+			class="h-full w-full border-2 object-cover grayscale transition-[filter] duration-1000 ease-out"
+			src={urlFor(data.settings.image.asset.url).width(1600).auto('format').url()}
+			alt="Laila Wolf"
+			width="1600"
+			height="2400"
+			fetchpriority="high"
+			decoding="sync"
+		/>
+	</figure>
 </section>
 
 <!-- SUBSCRIBE + LINKS -->
