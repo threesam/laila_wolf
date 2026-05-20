@@ -3,15 +3,23 @@
 @font-face {
 	font-family: 'PoiretOne';
 	font-display: swap;
-	src: url('$lib/assets/fonts/PoiretOne-Regular.ttf');
+	src: url('$lib/assets/fonts/PoiretOne-Regular.woff2') format('woff2');
 }
 
 @font-face {
 	font-family: 'Montserrat';
 	font-display: swap;
-	src:
-		url('$lib/assets/fonts/Montserrat-VariableFont_wght.ttf'),
-		url('$lib/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf');
+	font-style: normal;
+	font-weight: 100 900;
+	src: url('$lib/assets/fonts/Montserrat-VariableFont_wght.woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	font-display: swap;
+	font-style: italic;
+	font-weight: 100 900;
+	src: url('$lib/assets/fonts/Montserrat-Italic-VariableFont_wght.woff2') format('woff2-variations');
 }
 
 @theme {
