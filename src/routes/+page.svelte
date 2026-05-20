@@ -4,6 +4,7 @@
 	import SocialLinks from '$lib/components/SocialLinks.svelte'
 	import SubscribeForm from '$lib/components/SubscribeForm.svelte'
 	import { urlFor } from '$lib/utils/sanity'
+	import { trackEvent } from '$lib/utils/umami'
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()
@@ -18,6 +19,7 @@
 	function activateHero(e: MouseEvent) {
 		e.preventDefault()
 		heroHovered = false
+		trackEvent('hero-cta-click', { from: 'hero-name' })
 		document.getElementById('subscribe')?.scrollIntoView({ behavior: 'smooth' })
 		setTimeout(() => document.getElementById('email')?.focus({ preventScroll: true }), 700)
 	}
