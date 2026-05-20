@@ -24,10 +24,10 @@
 	</div>
 </section>
 
-<!-- IMAGE + QUOTE — 50/50 row on desktop, column on mobile -->
-<section class="flex w-full flex-col lg:flex-row">
+<!-- IMAGE + QUOTE — equal 50/50 row on desktop, stacked on mobile. -->
+<section class="flex w-full flex-col items-stretch lg:flex-row">
 	{#if founder?.image?.asset?.url}
-		<figure class="aspect-square w-full bg-pink-200 lg:aspect-auto lg:w-1/2">
+		<figure class="aspect-square w-full bg-pink-200 lg:w-1/2">
 			<img
 				class="h-full w-full object-cover grayscale"
 				src={urlFor(founder.image.asset.url).size(1200, 1200).auto('format').url()}
@@ -41,8 +41,10 @@
 	{/if}
 
 	{#if data.settings.body}
-		<div class="bg-gradient-3 text-dark flex w-full items-center px-5 py-16 sm:p-10 lg:w-1/2 lg:p-20">
-			<div class="quote-body w-full">
+		<div
+			class="bg-gradient-3 text-light/90 flex aspect-square w-full items-center justify-center px-5 py-16 sm:p-10 lg:w-1/2 lg:p-20"
+		>
+			<div class="quote-body w-full max-w-md">
 				<PortableText blocks={data.settings.body} />
 			</div>
 		</div>

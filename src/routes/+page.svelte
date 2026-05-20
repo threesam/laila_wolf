@@ -113,10 +113,14 @@
 	<section class="max-w-screen relative flex w-full flex-col-reverse lg:grid lg:grid-cols-2">
 		<div id="subscribe" class="relative grid aspect-square place-content-center">
 			<Sketch />
-			<div class="z-0 mx-auto max-w-sm px-5 text-center">
-				<h2 class="font-display text-light mb-2 text-3xl">Films, slowly.</h2>
-				<p class="text-light mb-6 text-sm opacity-80">
-					Release dates and the occasional dispatch. No noise.
+			<!-- Scrim sits between sketch animation and copy so text stays legible against the moving dots. -->
+			<div class="bg-dark/60 pointer-events-none absolute inset-0"></div>
+			<div class="relative z-10 mx-auto max-w-sm px-5 text-center">
+				<p
+					class="font-display mb-6 text-2xl text-white lg:text-3xl"
+					style="text-shadow: 0 1px 12px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.95);"
+				>
+					just films, slowly. no noise.
 				</p>
 				<SubscribeForm />
 			</div>
