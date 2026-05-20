@@ -125,7 +125,7 @@
 				<SubscribeForm />
 			</div>
 		</div>
-		<div class="grid aspect-square place-content-center bg-gray-300">
+		<div id="socials" class="grid aspect-square place-content-center bg-gray-300">
 			<SocialLinks {links} size={60} color="#000" />
 		</div>
 	</section>
