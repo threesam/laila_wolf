@@ -8,6 +8,20 @@
 
 	let { data }: { data: PageData } = $props()
 
+	// Hover state for the hero. We track it in JS instead of using pure CSS
+	// :hover because (a) after `scrollIntoView` the cursor doesn't move, so
+	// CSS :hover never re-evaluates and the pink state sticks; (b) touch
+	// devices fire a sticky synthetic :hover on tap that can't be cleared
+	// by CSS alone.
+	let heroHovered = $state(false)
+
+	function activateHero(e: MouseEvent) {
+		e.preventDefault()
+		heroHovered = false
+		document.getElementById('subscribe')?.scrollIntoView({ behavior: 'smooth' })
+		setTimeout(() => document.getElementById('email')?.focus({ preventScroll: true }), 700)
+	}
+
 	// filter out circular reference to this page
 	const links = data.settings.founders[0].links.filter(
 		({ href }: { href: string }) => !new URL(href).hostname.startsWith(data.settings.hostname),
@@ -37,50 +51,50 @@
 	id="hero"
 	class="relative flex h-screen w-full items-center justify-center overflow-hidden"
 >
-	<!-- Textbox (peer + group): peer drives the sibling image+scrim, group drives the descendant text. -->
+	<!-- Textbox: pointer events drive heroHovered, which the image, scrim, and text below all react to. -->
 	<div
-		class="peer group relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-10 py-12"
+		class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-10 py-12"
+		onpointerenter={() => (heroHovered = true)}
+		onpointerleave={() => (heroHovered = false)}
 	>
-		<a
-			class="w-full"
-			href="#subscribe"
-			onclick={(e) => {
-				e.preventDefault()
-				document.getElementById('subscribe')?.scrollIntoView({ behavior: 'smooth' })
-				setTimeout(() => document.getElementById('email')?.focus({ preventScroll: true }), 700)
-			}}
-		>
+		<a class="w-full" href="#subscribe" onclick={activateHero}>
 			<h1
 				class="font-display flex w-full justify-center gap-10 font-bold drop-shadow-lg lg:grid lg:grid-cols-2 lg:text-8xl"
 			>
 				<span
-					class="text-gray-300 transition-colors duration-[2000ms] ease-out group-hover:text-pink-300 lg:text-right"
-					>Laila</span
+					class="transition-colors duration-[2000ms] ease-out lg:text-right {heroHovered
+						? 'text-pink-300'
+						: 'text-gray-300'}">Laila</span
 				>
 				<span
-					class="text-gray-300 transition-colors duration-[2000ms] ease-out group-hover:text-pink-300 lg:text-left"
-					>Wolf</span
+					class="transition-colors duration-[2000ms] ease-out lg:text-left {heroHovered
+						? 'text-pink-300'
+						: 'text-gray-300'}">Wolf</span
 				>
 			</h1>
 		</a>
 		<p
-			class="text-center text-sm font-medium uppercase tracking-[0.3em] text-white transition-colors duration-[2000ms] ease-out group-hover:text-pink-300 lg:text-base"
+			class="text-center text-sm font-medium uppercase tracking-[0.3em] transition-colors duration-[2000ms] ease-out lg:text-base {heroHovered
+				? 'text-pink-300'
+				: 'text-white'}"
 		>
 			Filmmaker — ghostwriter
 		</p>
 	</div>
 
-	<!-- Full-screen scrim — sibling of peer, fades over 2s on textbox hover. -->
+	<!-- Full-screen scrim — fades over 2s when textbox is hovered. -->
 	<div
-		class="bg-dark/60 pointer-events-none absolute inset-0 z-10 transition-opacity duration-[2000ms] ease-out peer-hover:opacity-0"
+		class="bg-dark/60 pointer-events-none absolute inset-0 z-10 transition-opacity duration-[2000ms] ease-out {heroHovered
+			? 'opacity-0'
+			: 'opacity-100'}"
 	></div>
 
-	<!-- Image — behind everything: grayscale → color over 2s, transparent → pink border over 1s. -->
-	<figure
-		class="bg-dark absolute inset-0 z-0 h-full w-full p-5 sm:p-10 lg:p-20 peer-hover:[&_img]:grayscale-0 peer-hover:[&_img]:border-pink-300"
-	>
+	<!-- Image — behind everything: grayscale → color and transparent → pink border over 2s. -->
+	<figure class="bg-dark absolute inset-0 z-0 h-full w-full p-5 sm:p-10 lg:p-20">
 		<img
-			class="h-full w-full border-2 border-transparent object-cover grayscale"
+			class="h-full w-full border-2 object-cover {heroHovered
+				? 'border-pink-300'
+				: 'border-transparent grayscale'}"
 			style="transition: filter 2000ms ease-out, border-color 2000ms ease-out;"
 			src={urlFor(data.settings.image.asset.url).width(1600).auto('format').url()}
 			alt="Laila Wolf"
