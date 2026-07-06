@@ -24,8 +24,9 @@
 	// to avoid double-counting (e.g. SocialLinks).
 	function trackOutbound(e: MouseEvent) {
 		const a = (e.target as Element | null)?.closest?.('a')
-		if (!a || a.closest('[data-umami-event]')) return
-		if (!a.href?.startsWith('http') || a.host === location.host) return
+		// instanceof also excludes SVG <a>, whose href is an object, not a string.
+		if (!(a instanceof HTMLAnchorElement) || a.closest('[data-umami-event]')) return
+		if (!a.href.startsWith('http') || a.host === location.host) return
 		trackEvent('outbound-click', { url: a.href })
 	}
 
