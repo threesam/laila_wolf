@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
+	import { trackEvent } from '$lib/utils/umami'
 
 	let { endpoint = '/api/subscribe', inputId = 'email' }: { endpoint?: string; inputId?: string } =
 		$props()
@@ -24,6 +25,7 @@
 			if (!res.ok) throw new Error(String(res.status))
 			status = 'ok'
 			message = 'Email confirmation sent — check your spam folder.'
+			trackEvent('newsletter-subscribe')
 			setTimeout(() => {
 				email = ''
 				status = 'idle'
@@ -33,6 +35,7 @@
 			console.error(err)
 			status = 'error'
 			message = 'Something went wrong — try again later.'
+			trackEvent('newsletter-error')
 		}
 	}
 </script>

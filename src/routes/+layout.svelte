@@ -6,6 +6,7 @@
 	import JsonLd from '$lib/components/JsonLd.svelte'
 	import { optimize } from '$lib/utils/img'
 	import { canonical, SITE_URL } from '$lib/utils/site'
+	import { trackEvent } from '$lib/utils/umami'
 	import type { LayoutData } from './$types'
 	import type { Snippet } from 'svelte'
 
@@ -16,6 +17,18 @@
 	let { data, children }: { data: LayoutData; children: Snippet } = $props()
 
 	inject({ mode: dev ? 'development' : 'production' })
+
+	// One delegated listener covers every external link on every page (the
+	// about-page filmography renders via PortableText, so per-element attrs
+	// can't reach it). Elements already tagged with data-umami-event opt out
+	// to avoid double-counting (e.g. SocialLinks).
+	function trackOutbound(e: MouseEvent) {
+		const a = (e.target as Element | null)?.closest?.('a')
+		// instanceof also excludes SVG <a>, whose href is an object, not a string.
+		if (!(a instanceof HTMLAnchorElement) || a.closest('[data-umami-event]')) return
+		if (!a.href.startsWith('http') || a.host === location.host) return
+		trackEvent('outbound-click', { url: a.href })
+	}
 
 	let founder = $derived(data?.settings?.founders?.[0])
 	let heroImage = $derived(optimize(data?.settings?.image?.asset?.url, { w: 1200 }))
@@ -62,6 +75,8 @@
 		<meta name="twitter:image" content={heroImage} />
 	{/if}
 </svelte:head>
+
+<svelte:document onclick={trackOutbound} />
 
 <JsonLd data={personLd} />
 
