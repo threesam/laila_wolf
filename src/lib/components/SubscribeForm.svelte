@@ -63,6 +63,7 @@
 	</label>
 	<button
 		type="submit"
+		data-umami-event="subscribe-click"
 		disabled={status === 'submitting' || !isValid}
 		class={`text-dark border-2 p-5 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 lg:pl-5 ${
 			isValid && status === 'idle'
