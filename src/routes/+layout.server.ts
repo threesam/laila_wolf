@@ -26,7 +26,8 @@ const QUERY = `*[_type == 'siteSettings' && hostname == 'lailawolf'][0]{
 // require instead of mere existence, and fall back when it doesn't hold.
 function isRenderable(s: unknown): boolean {
 	const doc = s as { image?: { asset?: { url?: string } }; founders?: { links?: unknown }[] }
-	return Boolean(doc?.image?.asset?.url && doc?.founders?.[0]?.links)
+	// links must be an array specifically — the homepage calls .filter on it.
+	return Boolean(doc?.image?.asset?.url) && Array.isArray(doc?.founders?.[0]?.links)
 }
 
 export async function load() {

@@ -24,10 +24,16 @@
 		setTimeout(() => document.getElementById('email')?.focus({ preventScroll: true }), 700)
 	}
 
-	// filter out circular reference to this page
-	const links = data.settings.founders[0].links.filter(
-		({ href }: { href: string }) => !new URL(href).hostname.startsWith(data.settings.hostname),
-	)
+	// Filter out the circular reference to this page. new URL() throws on an empty
+	// or missing href, and because this route is prerendered that throw would fail
+	// the build rather than one request — so a malformed link is dropped instead.
+	const links = data.settings.founders[0].links.filter(({ href }: { href: string }) => {
+		try {
+			return !new URL(href).hostname.startsWith(data.settings.hostname)
+		} catch {
+			return false
+		}
+	})
 
 	if (data.settings.founders[0].contact) {
 		links.push({
