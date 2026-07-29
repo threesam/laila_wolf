@@ -1,25 +1,20 @@
 import { client } from '$lib/utils/sanity'
 import fallback from '$lib/data/settings.fallback.json'
 
+// Selects only the fields the pages actually render. The previous version used
+// `...` spreads with bare `asset->` dereferences, which pulled whole asset
+// documents (metadata, palette, LQIP blobs) plus a 5-image `imageGallery` and an
+// `icons` array that nothing reads.
 const QUERY = `*[_type == 'siteSettings' && hostname == 'lailawolf'][0]{
-	...,
-	image{
-		...,
-		asset->
-	},
-	icons[]{
-		asset->
-	},
+	description,
+	hostname,
+	body,
+	image{ asset->{ url } },
 	founders[]->{
-		...,
-		image{
-			...,
-			asset->
-		},
-		imageGallery[]{
-			...
-			asset->
-		},
+		bio,
+		contact,
+		links,
+		image{ asset->{ url } }
 	}
 }`
 

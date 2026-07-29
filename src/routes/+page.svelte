@@ -98,7 +98,7 @@
 				? 'border-pink-300'
 				: 'border-transparent grayscale'}"
 			style="transition: filter 2000ms ease-out, border-color 2000ms ease-out;"
-			src={urlFor(data.settings.image.asset.url).width(1600).auto('format').url()}
+			src={urlFor(data.settings.image.asset.url).width(1024).auto('format').url()}
 			alt="Laila Wolf"
 			width="1600"
 			height="2400"
