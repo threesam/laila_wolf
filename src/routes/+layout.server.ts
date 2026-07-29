@@ -25,10 +25,10 @@ export async function load() {
 	// snapshot and served whenever Sanity can't answer. Stale beats offline.
 	try {
 		const settings = await client.fetch(QUERY)
-		if (settings) return { settings, stale: false }
+		if (settings) return { settings }
 		console.warn('[layout] Sanity returned no siteSettings — using committed fallback')
 	} catch (err) {
 		console.warn('[layout] Sanity fetch failed, using committed fallback:', err)
 	}
-	return { settings: fallback, stale: true }
+	return { settings: fallback }
 }
