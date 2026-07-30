@@ -9,8 +9,8 @@
 	let serialized = $derived(
 		JSON.stringify(payload).replace(
 			UNSAFE,
-			(c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'),
-		),
+			(c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')
+		)
 	)
 </script>
 

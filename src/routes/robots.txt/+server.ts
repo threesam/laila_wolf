@@ -11,6 +11,6 @@ Disallow: /api/
 Sitemap: ${SITE_URL}/sitemap.xml
 `
 	return new Response(body, {
-		headers: { 'content-type': 'text/plain; charset=utf-8' },
+		headers: { 'content-type': 'text/plain; charset=utf-8' }
 	})
 }

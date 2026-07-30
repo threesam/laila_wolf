@@ -62,8 +62,8 @@
 		worksFor: {
 			'@type': 'Organization',
 			name: 'Skeleton Flowers and Water',
-			url: SFW_URL,
-		},
+			url: SFW_URL
+		}
 	})
 </script>
 

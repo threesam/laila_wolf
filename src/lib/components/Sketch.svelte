@@ -36,8 +36,7 @@
 				const size = 3 + Math.random() * 17
 				const x = Math.random() * (w - size)
 				const y = Math.random() * h
-				const color: [number, number, number] =
-					Math.random() > 0.5 ? [183, 198, 175] : [56, 80, 69]
+				const color: [number, number, number] = Math.random() > 0.5 ? [183, 198, 175] : [56, 80, 69]
 				let collision = false
 				for (const p of points) {
 					const dx = x - p.x
@@ -110,7 +109,7 @@
 					}
 				}
 			},
-			{ rootMargin: '200px' },
+			{ rootMargin: '200px' }
 		)
 		io.observe(container)
 		cleanups.push(() => io.disconnect())

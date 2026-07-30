@@ -20,7 +20,7 @@
 			const res = await fetch(endpoint, {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ email }),
+				body: JSON.stringify({ email })
 			})
 			if (!res.ok) throw new Error(String(res.status))
 			status = 'ok'
@@ -40,10 +40,7 @@
 	}
 </script>
 
-<form
-	class="flex max-w-full flex-grow flex-col gap-10 lg:flex-row lg:gap-0"
-	onsubmit={submit}
->
+<form class="flex max-w-full flex-grow flex-col gap-10 lg:flex-row lg:gap-0" onsubmit={submit}>
 	<label class="relative" for={inputId}>
 		<input
 			type="email"

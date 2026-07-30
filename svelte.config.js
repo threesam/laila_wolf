@@ -11,9 +11,9 @@ const config = {
 			// the adapter's default, which moves when the adapter is bumped. This
 			// matches what is already deployed, so it locks behaviour in place
 			// rather than changing it.
-			runtime: 'nodejs24.x',
-		}),
-	},
+			runtime: 'nodejs24.x'
+		})
+	}
 }
 
 export default config

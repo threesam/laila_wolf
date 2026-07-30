@@ -38,7 +38,7 @@
 	if (data.settings.founders[0].contact) {
 		links.push({
 			title: 'contact',
-			href: 'mailto:' + data.settings.founders[0].contact,
+			href: 'mailto:' + data.settings.founders[0].contact
 		})
 	}
 </script>
@@ -50,7 +50,7 @@
 		title: 'Laila Wolf',
 		description: data.settings.description ?? 'Filmmaker.',
 		type: 'website',
-		images: [{ url: data.settings.image.asset.url }],
+		images: [{ url: data.settings.image.asset.url }]
 	}}
 />
 
