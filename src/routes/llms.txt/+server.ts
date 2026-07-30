@@ -19,7 +19,7 @@ export const GET: RequestHandler = async () => {
 				"slug": slug.current,
 				description,
 				status
-			}`,
+			}`
 		)
 		.catch(() => [])
 
@@ -45,6 +45,6 @@ Laila Wolf is co-founder of [Skeleton Flowers and Water](${SFW}), an American fi
 `
 
 	return new Response(body, {
-		headers: { 'content-type': 'text/plain; charset=utf-8' },
+		headers: { 'content-type': 'text/plain; charset=utf-8' }
 	})
 }

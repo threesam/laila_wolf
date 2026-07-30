@@ -1,1291 +1,1225 @@
 {
-  "body": [
-    {
-      "_key": "5a62fbc71f3d",
-      "_type": "block",
-      "children": [
-        {
-          "_key": "bba5c5b4bc88",
-          "_type": "span",
-          "marks": [
-            "em"
-          ],
-          "text": "\"Peculiar is my most favored word. It isn't harsh like calling someone 'strange' even if they are... It is quite the inclusive three syllables. The realm of peculiarity includes but is not limited to odd, uncommon or unusual. It's the area of gray that most of my life has sunken into.\u201d"
-        },
-        {
-          "_key": "1fb88653f5fe",
-          "_type": "span",
-          "marks": [],
-          "text": " \u2014 "
-        },
-        {
-          "_key": "a0884a6c71c7",
-          "_type": "span",
-          "marks": [
-            "strong"
-          ],
-          "text": "Once Upon an End"
-        }
-      ],
-      "markDefs": [],
-      "style": "blockquote"
-    }
-  ],
-  "description": null,
-  "founders": [
-    {
-      "bio": [
-        {
-          "_key": "76bcfc868638",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "1e71a9856a5a0",
-              "_type": "span",
-              "marks": [],
-              "text": "Laila Wolf is an author, producer/director/actress, singer, and model who has ghostwritten a body of work including but not limited to memoirs, novels, scripts, screenplays, short stories, articles and songs."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "df2ea80ea411",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "cc00aca0fbde",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "eb57bf40ab8b",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "19cc8b20fb440",
-              "_type": "span",
-              "marks": [],
-              "text": "As a child, Elaina wasn\u2019t too fond of reading or writing until she was given a short story assignment which became three separate stories woven together to create "
-            },
-            {
-              "_key": "c06261f96760",
-              "_type": "span",
-              "marks": [
-                "638c5c0e7d55"
-              ],
-              "text": "The Magic Book of \"E\""
-            },
-            {
-              "_key": "c7dd8f1ca6a7",
-              "_type": "span",
-              "marks": [],
-              "text": "; the first book to be published by Elaina R. D\u2019Angelo in 2010. With a blossoming love of writing, "
-            },
-            {
-              "_key": "8058e17881b7",
-              "_type": "span",
-              "marks": [
-                "5550df4eb540"
-              ],
-              "text": "Girls Just Want to Have Fun: Spring Killing"
-            },
-            {
-              "_key": "5b545af10d46",
-              "_type": "span",
-              "marks": [],
-              "text": " followed suit in 2013."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "638c5c0e7d55",
-              "_type": "link",
-              "href": "https://g.co/kgs/ZFLQzy "
-            },
-            {
-              "_key": "5550df4eb540",
-              "_type": "link",
-              "href": "https://g.co/kgs/DLT5gF  "
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "6604303eed38",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0c1e3dad9991",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "59b8d167fd69",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "491c5f4a2ee90",
-              "_type": "span",
-              "marks": [],
-              "text": "After a book tour and independent study throughout, Elaina decided it was time for a new adventure and dove into the unknown depths of public high school to write her third book, "
-            },
-            {
-              "_key": "1fcd13497b0c",
-              "_type": "span",
-              "marks": [
-                "3d940b41eecb"
-              ],
-              "text": "The Date Diaries"
-            },
-            {
-              "_key": "b1e6326da8ab",
-              "_type": "span",
-              "marks": [],
-              "text": ". Through the dysfunctional twists and turns of her high school experience the pseudonym Laila Wolf was born."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "3d940b41eecb",
-              "_type": "link",
-              "href": "https://www.amazon.com/Date-Diaries-Laila-Wolf/dp/1078001707"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "a7fb3ba1b748",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "65a01fc7de71",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "97cc9787a0bf",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "937c0c77fbb10",
-              "_type": "span",
-              "marks": [],
-              "text": "Upon commencement from high school, Laila began writing her next book The Campus Chronicles, modeled for several well known photographers such as Cvatik, Santi Fox, Sebastian Svenkeren, and walked the runway for local designers."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "d6b1a784ad35",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "ad0bcd1a5a0c",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "ac68ecfaa5d2",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "6bebab2051cb0",
-              "_type": "span",
-              "marks": [],
-              "text": "In college, as an Ornamental Horticulture major, Laila Wolf founded Wolfsbane; a collaborative online magazine dedicated to spreading awareness regarding climate change, pollution, sustainability and much more in order to create a healthier world."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "b846c75fd9b2",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "30a3ec4b6582",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "f0ce430cb398",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "2e12d95a12040",
-              "_type": "span",
-              "marks": [],
-              "text": "As an Ornamental Horticulturist with an additional six certifications from Penn under her belt Laila went on to study filmmaking."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "da6445791dcb",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "cc9db5397352",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "dd531d26a36d",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "2b5b87f2956d0",
-              "_type": "span",
-              "marks": [],
-              "text": "Skeleton Flowers and Water "
-            },
-            {
-              "_key": "cf0475795a0c",
-              "_type": "span",
-              "marks": [
-                "043d20d631d4"
-              ],
-              "text": "skeletonflowersandwater.com"
-            },
-            {
-              "_key": "d978956fa925",
-              "_type": "span",
-              "marks": [],
-              "text": " is a mother/daughter run production company."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "043d20d631d4",
-              "_type": "link",
-              "href": "https://skeletonflowersandwater.com/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "1d5759aa7ab0",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "318d82f0f491",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "690aeef95300",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "64a12a87ce350",
-              "_type": "span",
-              "marks": [],
-              "text": "Korra in "
-            },
-            {
-              "_key": "77bb6c3f1017",
-              "_type": "span",
-              "marks": [
-                "c3fb13471827"
-              ],
-              "text": "Kaen Chronicles"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "c3fb13471827",
-              "_type": "link",
-              "href": "https://youtu.be/Zx5htsJ7Qwc"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "d333370f148e",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "65839a27a4f9",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "8e27898efab9",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "b5d82d265a810",
-              "_type": "span",
-              "marks": [
-                "d98406dbcaf9"
-              ],
-              "text": "Fashion show"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "d98406dbcaf9",
-              "_type": "link",
-              "href": "https://youtu.be/XAwl3B_-HiU"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "2833f3f0afbf",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "ba2571616c56",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "h4"
-        },
-        {
-          "_key": "3b5a98204108",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "98e21151d7ce",
-              "_type": "span",
-              "marks": [],
-              "text": "2020 Issues"
-            }
-          ],
-          "markDefs": [],
-          "style": "h4"
-        },
-        {
-          "_key": "4be4b1d24068",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0b0bb2631a3e",
-              "_type": "span",
-              "marks": [
-                "686449ffefee"
-              ],
-              "text": "Spring"
-            },
-            {
-              "_key": "eaeffb914f7a",
-              "_type": "span",
-              "marks": [],
-              "text": " "
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "686449ffefee",
-              "_type": "link",
-              "href": "https://wolfsbanespring2020.reader.mywomags.com/Wolfsbane/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "d8f686b547fa",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "e6123e589760",
-              "_type": "span",
-              "marks": [
-                "5d4e4bb963a0"
-              ],
-              "text": "Summer"
-            },
-            {
-              "_key": "8e5065e2c9af",
-              "_type": "span",
-              "marks": [],
-              "text": " "
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "5d4e4bb963a0",
-              "_type": "link",
-              "href": "https://wolfsbanemagsummer2020.reader.mywomags.com/Wolfsbane-Magazine/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "81f19df84430",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "7b4ac4bb2bb4",
-              "_type": "span",
-              "marks": [
-                "6f96de6caf32"
-              ],
-              "text": "Autumn"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "6f96de6caf32",
-              "_type": "link",
-              "href": "https://wolfsbanemagfall2020.reader.mywomags.com/Wolfsbane/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "fc015880304f",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0493619d1dff",
-              "_type": "span",
-              "marks": [
-                "5271b9a3c087"
-              ],
-              "text": "Winter"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "c35efb68f580",
-              "_type": "link",
-              "href": "https://wolfsbanemagfall2020.reader.mywomags.com/Wolfsbane/"
-            },
-            {
-              "_key": "5271b9a3c087",
-              "_type": "link",
-              "href": "https://wolfsbanemagwinter2020.reader.mywomags.com/Wolfsbane-Magazine/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "ef6656fa79db",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "f306e159d9c0",
-              "_type": "span",
-              "marks": [],
-              "text": "2019 Issues "
-            }
-          ],
-          "markDefs": [],
-          "style": "h4"
-        },
-        {
-          "_key": "a976773a085c",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "a28fad52adb3",
-              "_type": "span",
-              "marks": [
-                "24ef5a656aa9"
-              ],
-              "text": "Spring"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "24ef5a656aa9",
-              "_type": "link",
-              "href": "https://drive.google.com/file/d/1t_3_sUhRo0WNgPj3BVTLpUstkB2PkNVS/view?usp=sharing"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "d50592779e57",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "4e7f45eb6cb4",
-              "_type": "span",
-              "marks": [
-                "7cf2e8740c33"
-              ],
-              "text": "Summer"
-            },
-            {
-              "_key": "5d945fa233c2",
-              "_type": "span",
-              "marks": [],
-              "text": " "
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "7cf2e8740c33",
-              "_type": "link",
-              "href": "https://wolfsbanemagsummer2019.reader.mywomags.com/Wolfsbane/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "1edbdbc7f815",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "5c393c556da8",
-              "_type": "span",
-              "marks": [
-                "1808078d43f8"
-              ],
-              "text": "Autumn"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "1808078d43f8",
-              "_type": "link",
-              "href": "https://wolfsbanemagazine.reader.mywomags.com/Wolfsbane-Magazine/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "43b25584e43a",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "38017dd61fe7",
-              "_type": "span",
-              "marks": [
-                "e7d798a57a54"
-              ],
-              "text": "Winter"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "e7d798a57a54",
-              "_type": "link",
-              "href": "https://wolfsbanemagwinter2019.reader.mywomags.com/Wolfsbane-Magazine/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "d70be1cfcb0d",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "c62a07193e830",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "387929be907c",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "584251d9adc9",
-              "_type": "span",
-              "marks": [
-                "30507baa0054"
-              ],
-              "text": "locastle"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "30507baa0054",
-              "_type": "link",
-              "href": "https://www.youtube.com/channel/UCVF4Jw-UfmSjrioh758CjMw "
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "17493d162df1",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "257872f3bfb50",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "fc8d2c081905",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "a3cf3dc5a9900",
-              "_type": "span",
-              "marks": [
-                "00f120cf6c45"
-              ],
-              "text": "jellyfish"
-            },
-            {
-              "_key": "61cbe4b717f1",
-              "_type": "span",
-              "marks": [],
-              "text": " by locastle"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "00f120cf6c45",
-              "_type": "link",
-              "href": "https://youtu.be/w7YjhWl6IRg "
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "158dfff53bb0",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "ad46668698f2",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "0773a866f6b7",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0c2e92fa92850",
-              "_type": "span",
-              "marks": [
-                "b2f17a8ece58"
-              ],
-              "text": "uncool"
-            },
-            {
-              "_key": "b170f989032d",
-              "_type": "span",
-              "marks": [],
-              "text": " by locastle"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "b2f17a8ece58",
-              "_type": "link",
-              "href": "https://youtu.be/T7srIXAUMrQ"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "860c5ceda4dd",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "7a89009e341d",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "4e3490a3b2fb",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "bda5670e16260",
-              "_type": "span",
-              "marks": [
-                "2d4e537fc98b"
-              ],
-              "text": "Flex"
-            },
-            {
-              "_key": "129e44d68d5f",
-              "_type": "span",
-              "marks": [],
-              "text": " by Kweku"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "2d4e537fc98b",
-              "_type": "link",
-              "href": "https://g.co/kgs/89zSgE"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "e37d79823334",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0ef9c732a3d3",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "38e130f35927",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "71456f5753480",
-              "_type": "span",
-              "marks": [
-                "aaae82dc0e9e"
-              ],
-              "text": "Pace"
-            },
-            {
-              "_key": "a5907cfb4405",
-              "_type": "span",
-              "marks": [],
-              "text": " Music Video and Bloopers"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "aaae82dc0e9e",
-              "_type": "link",
-              "href": "https://youtu.be/M_8fCxowkV8 "
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "d6e7019a0671",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "77c59da442dd",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "dbf0d883fbc6",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "2c39b565e3020",
-              "_type": "span",
-              "marks": [
-                "0f02779f615d"
-              ],
-              "text": "Focus"
-            },
-            {
-              "_key": "8f8eca1802a7",
-              "_type": "span",
-              "marks": [],
-              "text": " Music Video"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "0f02779f615d",
-              "_type": "link",
-              "href": "https://youtu.be/dsVefWxXyYw"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "3c95f5341b6d",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "f61469dedab9",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "4b3aab62ddeb",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "a9e1d37e64470",
-              "_type": "span",
-              "marks": [],
-              "text": "Candy in Bobby McGruther\u2019s "
-            },
-            {
-              "_key": "22d8af0fd4f2",
-              "_type": "span",
-              "marks": [
-                "51e06daead79"
-              ],
-              "text": "The Bunny Man"
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "51e06daead79",
-              "_type": "link",
-              "href": "https://www.imdb.com/title/tt9275848/"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "2ff6db5040f2",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "f00f1b323485",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "50ba158c8b6f",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "0cd750d7b9560",
-              "_type": "span",
-              "marks": [],
-              "text": "Assistant to Paul Borghese and appears in episode 9 dancing the Tarantella in William Demeo\u2019s second season of "
-            },
-            {
-              "_key": "52e46b01f913",
-              "_type": "span",
-              "marks": [
-                "0c25d57338b9"
-              ],
-              "text": "Gravesend"
-            },
-            {
-              "_key": "4ef3ef9a25eb",
-              "_type": "span",
-              "marks": [],
-              "text": " on Amazon Prime."
-            }
-          ],
-          "markDefs": [
-            {
-              "_key": "0c25d57338b9",
-              "_type": "link",
-              "href": "https://www.imdb.com/title/tt11547684/?ref_=nv_sr_srsg_0_tt_8_nm_0_q_gravesend "
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "459f9502fd5a",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "92ea027eaf07",
-              "_type": "span",
-              "marks": [],
-              "text": ""
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        },
-        {
-          "_key": "3c10777cf3bc",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "36ceb11b2b92",
-              "_type": "span",
-              "marks": [],
-              "text": "Official Accounts"
-            }
-          ],
-          "markDefs": [],
-          "style": "h3"
-        },
-        {
-          "_key": "69b7169bbdf2",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "ba6091796424",
-              "_type": "span",
-              "marks": [
-                "1d985a6832a7"
-              ],
-              "text": "IMDb"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "1d985a6832a7",
-              "_type": "link",
-              "href": "https://www.imdb.com/name/nm11617057/?ref_=ext_shr_lnk"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "5156743220ab",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "313ffeb2e74e",
-              "_type": "span",
-              "marks": [
-                "2207664dce8f"
-              ],
-              "text": "IMDb"
-            },
-            {
-              "_key": "3413ca3d3383",
-              "_type": "span",
-              "marks": [],
-              "text": " (skeleton flowers and water)"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "2207664dce8f",
-              "_type": "link",
-              "href": "https://www.imdb.com/search/title/?companies=co0959882"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "f4400c771d81",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "046c9db9d782",
-              "_type": "span",
-              "marks": [
-                "81cb34531839"
-              ],
-              "text": "Instagram"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "81cb34531839",
-              "_type": "link",
-              "href": "https://instagram.com/laila_wolf_"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "c0840b2e4787",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "20a239bc9cc5",
-              "_type": "span",
-              "marks": [
-                "6c5415a02448"
-              ],
-              "text": "Instagram"
-            },
-            {
-              "_key": "fab072360dcc",
-              "_type": "span",
-              "marks": [],
-              "text": " (skeleton flowers and water)"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "6c5415a02448",
-              "_type": "link",
-              "href": "https://www.instagram.com/skeletonflowersandwater/?utm_medium=copy_link"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "29bd6c32217f",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "2563f78ece48",
-              "_type": "span",
-              "marks": [
-                "eeb0da1d5e14"
-              ],
-              "text": "Instagram"
-            },
-            {
-              "_key": "5bed681f544b",
-              "_type": "span",
-              "marks": [],
-              "text": " (wolfsbane)"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "eeb0da1d5e14",
-              "_type": "link",
-              "href": "https://instagram.com/wolfsbanemagazine"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "a014f00d8e81",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "b2db04ea3055",
-              "_type": "span",
-              "marks": [
-                "b20bd667fd42"
-              ],
-              "text": "TikTok"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "b20bd667fd42",
-              "_type": "link",
-              "href": "https://www.tiktok.com/@laila_wolf_?is_from_webapp=1&sender_device=pc"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "3d512fade1e3",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "b48878da47e3",
-              "_type": "span",
-              "marks": [
-                "4fce530e0036"
-              ],
-              "text": "TikTok"
-            },
-            {
-              "_key": "6ee83467c3d1",
-              "_type": "span",
-              "marks": [],
-              "text": " (skeleton flowers and water)"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "4fce530e0036",
-              "_type": "link",
-              "href": "https://www.tiktok.com/@skeletonflowersandwater?is_from_webapp=1&sender_device=pc"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "7b592c0fad42",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "9a64c64460c9",
-              "_type": "span",
-              "marks": [
-                "33784067e8e2"
-              ],
-              "text": "YouTube"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "33784067e8e2",
-              "_type": "link",
-              "href": "https://youtube.com/c/LailaWolf"
-            }
-          ],
-          "style": "normal"
-        },
-        {
-          "_key": "0fd184aeecec",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "71de3f40411f",
-              "_type": "span",
-              "marks": [
-                "3237113088a6"
-              ],
-              "text": "Facebook"
-            }
-          ],
-          "level": 1,
-          "listItem": "bullet",
-          "markDefs": [
-            {
-              "_key": "3237113088a6",
-              "_type": "link",
-              "href": "https://www.facebook.com/laila.wolf.568/?locale=fa_IR"
-            }
-          ],
-          "style": "normal"
-        }
-      ],
-      "contact": "contact@lailawolf.com",
-      "image": {
-        "asset": {
-          "url": "https://cdn.sanity.io/images/4yxngtwt/production/25858753181759376b980ec009bd2168d690b598-1575x1575.jpg"
-        }
-      },
-      "links": [
-        {
-          "_key": "cc65011b2d16",
-          "_type": "link",
-          "href": "https://lailawolf.com",
-          "title": "website"
-        },
-        {
-          "_key": "a6f0f7e29ede",
-          "_type": "link",
-          "href": "https://instagram.com/laila_wolf_ ",
-          "title": "instagram"
-        },
-        {
-          "_key": "86862b3ea224",
-          "_type": "link",
-          "href": "https://tiktok.com/@laila_wolf_",
-          "title": "tiktok"
-        },
-        {
-          "_key": "aeefecb604ec",
-          "_type": "link",
-          "href": "https://www.imdb.com/name/nm11617057/?ref_=ext_shr_lnk",
-          "title": "imdb"
-        },
-        {
-          "_key": "815285378ad1",
-          "_type": "link",
-          "href": "https://www.backstage.com/u/laila-wolf/",
-          "title": "backstage"
-        },
-        {
-          "_key": "c0dad46f036c",
-          "_type": "link",
-          "href": "https://www.facebook.com/laila.wolf.568/?locale=fa_IR",
-          "title": "facebook"
-        }
-      ]
-    }
-  ],
-  "hostname": "lailawolf",
-  "image": {
-    "asset": {
-      "url": "https://cdn.sanity.io/images/4yxngtwt/production/8a41890a7c548331ca40f8492f2eb3f3be01c160-1024x1024.png"
-    }
-  }
+	"body": [
+		{
+			"_key": "5a62fbc71f3d",
+			"_type": "block",
+			"children": [
+				{
+					"_key": "bba5c5b4bc88",
+					"_type": "span",
+					"marks": ["em"],
+					"text": "\"Peculiar is my most favored word. It isn't harsh like calling someone 'strange' even if they are... It is quite the inclusive three syllables. The realm of peculiarity includes but is not limited to odd, uncommon or unusual. It's the area of gray that most of my life has sunken into.\u201d"
+				},
+				{
+					"_key": "1fb88653f5fe",
+					"_type": "span",
+					"marks": [],
+					"text": " \u2014 "
+				},
+				{
+					"_key": "a0884a6c71c7",
+					"_type": "span",
+					"marks": ["strong"],
+					"text": "Once Upon an End"
+				}
+			],
+			"markDefs": [],
+			"style": "blockquote"
+		}
+	],
+	"description": null,
+	"founders": [
+		{
+			"bio": [
+				{
+					"_key": "76bcfc868638",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "1e71a9856a5a0",
+							"_type": "span",
+							"marks": [],
+							"text": "Laila Wolf is an author, producer/director/actress, singer, and model who has ghostwritten a body of work including but not limited to memoirs, novels, scripts, screenplays, short stories, articles and songs."
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "df2ea80ea411",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "cc00aca0fbde",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "eb57bf40ab8b",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "19cc8b20fb440",
+							"_type": "span",
+							"marks": [],
+							"text": "As a child, Elaina wasn\u2019t too fond of reading or writing until she was given a short story assignment which became three separate stories woven together to create "
+						},
+						{
+							"_key": "c06261f96760",
+							"_type": "span",
+							"marks": ["638c5c0e7d55"],
+							"text": "The Magic Book of \"E\""
+						},
+						{
+							"_key": "c7dd8f1ca6a7",
+							"_type": "span",
+							"marks": [],
+							"text": "; the first book to be published by Elaina R. D\u2019Angelo in 2010. With a blossoming love of writing, "
+						},
+						{
+							"_key": "8058e17881b7",
+							"_type": "span",
+							"marks": ["5550df4eb540"],
+							"text": "Girls Just Want to Have Fun: Spring Killing"
+						},
+						{
+							"_key": "5b545af10d46",
+							"_type": "span",
+							"marks": [],
+							"text": " followed suit in 2013."
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "638c5c0e7d55",
+							"_type": "link",
+							"href": "https://g.co/kgs/ZFLQzy "
+						},
+						{
+							"_key": "5550df4eb540",
+							"_type": "link",
+							"href": "https://g.co/kgs/DLT5gF  "
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "6604303eed38",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0c1e3dad9991",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "59b8d167fd69",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "491c5f4a2ee90",
+							"_type": "span",
+							"marks": [],
+							"text": "After a book tour and independent study throughout, Elaina decided it was time for a new adventure and dove into the unknown depths of public high school to write her third book, "
+						},
+						{
+							"_key": "1fcd13497b0c",
+							"_type": "span",
+							"marks": ["3d940b41eecb"],
+							"text": "The Date Diaries"
+						},
+						{
+							"_key": "b1e6326da8ab",
+							"_type": "span",
+							"marks": [],
+							"text": ". Through the dysfunctional twists and turns of her high school experience the pseudonym Laila Wolf was born."
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "3d940b41eecb",
+							"_type": "link",
+							"href": "https://www.amazon.com/Date-Diaries-Laila-Wolf/dp/1078001707"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "a7fb3ba1b748",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "65a01fc7de71",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "97cc9787a0bf",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "937c0c77fbb10",
+							"_type": "span",
+							"marks": [],
+							"text": "Upon commencement from high school, Laila began writing her next book The Campus Chronicles, modeled for several well known photographers such as Cvatik, Santi Fox, Sebastian Svenkeren, and walked the runway for local designers."
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "d6b1a784ad35",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "ad0bcd1a5a0c",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "ac68ecfaa5d2",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "6bebab2051cb0",
+							"_type": "span",
+							"marks": [],
+							"text": "In college, as an Ornamental Horticulture major, Laila Wolf founded Wolfsbane; a collaborative online magazine dedicated to spreading awareness regarding climate change, pollution, sustainability and much more in order to create a healthier world."
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "b846c75fd9b2",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "30a3ec4b6582",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "f0ce430cb398",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "2e12d95a12040",
+							"_type": "span",
+							"marks": [],
+							"text": "As an Ornamental Horticulturist with an additional six certifications from Penn under her belt Laila went on to study filmmaking."
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "da6445791dcb",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "cc9db5397352",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "dd531d26a36d",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "2b5b87f2956d0",
+							"_type": "span",
+							"marks": [],
+							"text": "Skeleton Flowers and Water "
+						},
+						{
+							"_key": "cf0475795a0c",
+							"_type": "span",
+							"marks": ["043d20d631d4"],
+							"text": "skeletonflowersandwater.com"
+						},
+						{
+							"_key": "d978956fa925",
+							"_type": "span",
+							"marks": [],
+							"text": " is a mother/daughter run production company."
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "043d20d631d4",
+							"_type": "link",
+							"href": "https://skeletonflowersandwater.com/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "1d5759aa7ab0",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "318d82f0f491",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "690aeef95300",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "64a12a87ce350",
+							"_type": "span",
+							"marks": [],
+							"text": "Korra in "
+						},
+						{
+							"_key": "77bb6c3f1017",
+							"_type": "span",
+							"marks": ["c3fb13471827"],
+							"text": "Kaen Chronicles"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "c3fb13471827",
+							"_type": "link",
+							"href": "https://youtu.be/Zx5htsJ7Qwc"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "d333370f148e",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "65839a27a4f9",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "8e27898efab9",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "b5d82d265a810",
+							"_type": "span",
+							"marks": ["d98406dbcaf9"],
+							"text": "Fashion show"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "d98406dbcaf9",
+							"_type": "link",
+							"href": "https://youtu.be/XAwl3B_-HiU"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "2833f3f0afbf",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "ba2571616c56",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "h4"
+				},
+				{
+					"_key": "3b5a98204108",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "98e21151d7ce",
+							"_type": "span",
+							"marks": [],
+							"text": "2020 Issues"
+						}
+					],
+					"markDefs": [],
+					"style": "h4"
+				},
+				{
+					"_key": "4be4b1d24068",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0b0bb2631a3e",
+							"_type": "span",
+							"marks": ["686449ffefee"],
+							"text": "Spring"
+						},
+						{
+							"_key": "eaeffb914f7a",
+							"_type": "span",
+							"marks": [],
+							"text": " "
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "686449ffefee",
+							"_type": "link",
+							"href": "https://wolfsbanespring2020.reader.mywomags.com/Wolfsbane/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "d8f686b547fa",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "e6123e589760",
+							"_type": "span",
+							"marks": ["5d4e4bb963a0"],
+							"text": "Summer"
+						},
+						{
+							"_key": "8e5065e2c9af",
+							"_type": "span",
+							"marks": [],
+							"text": " "
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "5d4e4bb963a0",
+							"_type": "link",
+							"href": "https://wolfsbanemagsummer2020.reader.mywomags.com/Wolfsbane-Magazine/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "81f19df84430",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "7b4ac4bb2bb4",
+							"_type": "span",
+							"marks": ["6f96de6caf32"],
+							"text": "Autumn"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "6f96de6caf32",
+							"_type": "link",
+							"href": "https://wolfsbanemagfall2020.reader.mywomags.com/Wolfsbane/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "fc015880304f",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0493619d1dff",
+							"_type": "span",
+							"marks": ["5271b9a3c087"],
+							"text": "Winter"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "c35efb68f580",
+							"_type": "link",
+							"href": "https://wolfsbanemagfall2020.reader.mywomags.com/Wolfsbane/"
+						},
+						{
+							"_key": "5271b9a3c087",
+							"_type": "link",
+							"href": "https://wolfsbanemagwinter2020.reader.mywomags.com/Wolfsbane-Magazine/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "ef6656fa79db",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "f306e159d9c0",
+							"_type": "span",
+							"marks": [],
+							"text": "2019 Issues "
+						}
+					],
+					"markDefs": [],
+					"style": "h4"
+				},
+				{
+					"_key": "a976773a085c",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "a28fad52adb3",
+							"_type": "span",
+							"marks": ["24ef5a656aa9"],
+							"text": "Spring"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "24ef5a656aa9",
+							"_type": "link",
+							"href": "https://drive.google.com/file/d/1t_3_sUhRo0WNgPj3BVTLpUstkB2PkNVS/view?usp=sharing"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "d50592779e57",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "4e7f45eb6cb4",
+							"_type": "span",
+							"marks": ["7cf2e8740c33"],
+							"text": "Summer"
+						},
+						{
+							"_key": "5d945fa233c2",
+							"_type": "span",
+							"marks": [],
+							"text": " "
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "7cf2e8740c33",
+							"_type": "link",
+							"href": "https://wolfsbanemagsummer2019.reader.mywomags.com/Wolfsbane/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "1edbdbc7f815",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "5c393c556da8",
+							"_type": "span",
+							"marks": ["1808078d43f8"],
+							"text": "Autumn"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "1808078d43f8",
+							"_type": "link",
+							"href": "https://wolfsbanemagazine.reader.mywomags.com/Wolfsbane-Magazine/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "43b25584e43a",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "38017dd61fe7",
+							"_type": "span",
+							"marks": ["e7d798a57a54"],
+							"text": "Winter"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "e7d798a57a54",
+							"_type": "link",
+							"href": "https://wolfsbanemagwinter2019.reader.mywomags.com/Wolfsbane-Magazine/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "d70be1cfcb0d",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "c62a07193e830",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "387929be907c",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "584251d9adc9",
+							"_type": "span",
+							"marks": ["30507baa0054"],
+							"text": "locastle"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "30507baa0054",
+							"_type": "link",
+							"href": "https://www.youtube.com/channel/UCVF4Jw-UfmSjrioh758CjMw "
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "17493d162df1",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "257872f3bfb50",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "fc8d2c081905",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "a3cf3dc5a9900",
+							"_type": "span",
+							"marks": ["00f120cf6c45"],
+							"text": "jellyfish"
+						},
+						{
+							"_key": "61cbe4b717f1",
+							"_type": "span",
+							"marks": [],
+							"text": " by locastle"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "00f120cf6c45",
+							"_type": "link",
+							"href": "https://youtu.be/w7YjhWl6IRg "
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "158dfff53bb0",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "ad46668698f2",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "0773a866f6b7",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0c2e92fa92850",
+							"_type": "span",
+							"marks": ["b2f17a8ece58"],
+							"text": "uncool"
+						},
+						{
+							"_key": "b170f989032d",
+							"_type": "span",
+							"marks": [],
+							"text": " by locastle"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "b2f17a8ece58",
+							"_type": "link",
+							"href": "https://youtu.be/T7srIXAUMrQ"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "860c5ceda4dd",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "7a89009e341d",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "4e3490a3b2fb",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "bda5670e16260",
+							"_type": "span",
+							"marks": ["2d4e537fc98b"],
+							"text": "Flex"
+						},
+						{
+							"_key": "129e44d68d5f",
+							"_type": "span",
+							"marks": [],
+							"text": " by Kweku"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "2d4e537fc98b",
+							"_type": "link",
+							"href": "https://g.co/kgs/89zSgE"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "e37d79823334",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0ef9c732a3d3",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "38e130f35927",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "71456f5753480",
+							"_type": "span",
+							"marks": ["aaae82dc0e9e"],
+							"text": "Pace"
+						},
+						{
+							"_key": "a5907cfb4405",
+							"_type": "span",
+							"marks": [],
+							"text": " Music Video and Bloopers"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "aaae82dc0e9e",
+							"_type": "link",
+							"href": "https://youtu.be/M_8fCxowkV8 "
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "d6e7019a0671",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "77c59da442dd",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "dbf0d883fbc6",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "2c39b565e3020",
+							"_type": "span",
+							"marks": ["0f02779f615d"],
+							"text": "Focus"
+						},
+						{
+							"_key": "8f8eca1802a7",
+							"_type": "span",
+							"marks": [],
+							"text": " Music Video"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "0f02779f615d",
+							"_type": "link",
+							"href": "https://youtu.be/dsVefWxXyYw"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "3c95f5341b6d",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "f61469dedab9",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "4b3aab62ddeb",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "a9e1d37e64470",
+							"_type": "span",
+							"marks": [],
+							"text": "Candy in Bobby McGruther\u2019s "
+						},
+						{
+							"_key": "22d8af0fd4f2",
+							"_type": "span",
+							"marks": ["51e06daead79"],
+							"text": "The Bunny Man"
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "51e06daead79",
+							"_type": "link",
+							"href": "https://www.imdb.com/title/tt9275848/"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "2ff6db5040f2",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "f00f1b323485",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "50ba158c8b6f",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "0cd750d7b9560",
+							"_type": "span",
+							"marks": [],
+							"text": "Assistant to Paul Borghese and appears in episode 9 dancing the Tarantella in William Demeo\u2019s second season of "
+						},
+						{
+							"_key": "52e46b01f913",
+							"_type": "span",
+							"marks": ["0c25d57338b9"],
+							"text": "Gravesend"
+						},
+						{
+							"_key": "4ef3ef9a25eb",
+							"_type": "span",
+							"marks": [],
+							"text": " on Amazon Prime."
+						}
+					],
+					"markDefs": [
+						{
+							"_key": "0c25d57338b9",
+							"_type": "link",
+							"href": "https://www.imdb.com/title/tt11547684/?ref_=nv_sr_srsg_0_tt_8_nm_0_q_gravesend "
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "459f9502fd5a",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "92ea027eaf07",
+							"_type": "span",
+							"marks": [],
+							"text": ""
+						}
+					],
+					"markDefs": [],
+					"style": "normal"
+				},
+				{
+					"_key": "3c10777cf3bc",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "36ceb11b2b92",
+							"_type": "span",
+							"marks": [],
+							"text": "Official Accounts"
+						}
+					],
+					"markDefs": [],
+					"style": "h3"
+				},
+				{
+					"_key": "69b7169bbdf2",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "ba6091796424",
+							"_type": "span",
+							"marks": ["1d985a6832a7"],
+							"text": "IMDb"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "1d985a6832a7",
+							"_type": "link",
+							"href": "https://www.imdb.com/name/nm11617057/?ref_=ext_shr_lnk"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "5156743220ab",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "313ffeb2e74e",
+							"_type": "span",
+							"marks": ["2207664dce8f"],
+							"text": "IMDb"
+						},
+						{
+							"_key": "3413ca3d3383",
+							"_type": "span",
+							"marks": [],
+							"text": " (skeleton flowers and water)"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "2207664dce8f",
+							"_type": "link",
+							"href": "https://www.imdb.com/search/title/?companies=co0959882"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "f4400c771d81",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "046c9db9d782",
+							"_type": "span",
+							"marks": ["81cb34531839"],
+							"text": "Instagram"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "81cb34531839",
+							"_type": "link",
+							"href": "https://instagram.com/laila_wolf_"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "c0840b2e4787",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "20a239bc9cc5",
+							"_type": "span",
+							"marks": ["6c5415a02448"],
+							"text": "Instagram"
+						},
+						{
+							"_key": "fab072360dcc",
+							"_type": "span",
+							"marks": [],
+							"text": " (skeleton flowers and water)"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "6c5415a02448",
+							"_type": "link",
+							"href": "https://www.instagram.com/skeletonflowersandwater/?utm_medium=copy_link"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "29bd6c32217f",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "2563f78ece48",
+							"_type": "span",
+							"marks": ["eeb0da1d5e14"],
+							"text": "Instagram"
+						},
+						{
+							"_key": "5bed681f544b",
+							"_type": "span",
+							"marks": [],
+							"text": " (wolfsbane)"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "eeb0da1d5e14",
+							"_type": "link",
+							"href": "https://instagram.com/wolfsbanemagazine"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "a014f00d8e81",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "b2db04ea3055",
+							"_type": "span",
+							"marks": ["b20bd667fd42"],
+							"text": "TikTok"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "b20bd667fd42",
+							"_type": "link",
+							"href": "https://www.tiktok.com/@laila_wolf_?is_from_webapp=1&sender_device=pc"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "3d512fade1e3",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "b48878da47e3",
+							"_type": "span",
+							"marks": ["4fce530e0036"],
+							"text": "TikTok"
+						},
+						{
+							"_key": "6ee83467c3d1",
+							"_type": "span",
+							"marks": [],
+							"text": " (skeleton flowers and water)"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "4fce530e0036",
+							"_type": "link",
+							"href": "https://www.tiktok.com/@skeletonflowersandwater?is_from_webapp=1&sender_device=pc"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "7b592c0fad42",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "9a64c64460c9",
+							"_type": "span",
+							"marks": ["33784067e8e2"],
+							"text": "YouTube"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "33784067e8e2",
+							"_type": "link",
+							"href": "https://youtube.com/c/LailaWolf"
+						}
+					],
+					"style": "normal"
+				},
+				{
+					"_key": "0fd184aeecec",
+					"_type": "block",
+					"children": [
+						{
+							"_key": "71de3f40411f",
+							"_type": "span",
+							"marks": ["3237113088a6"],
+							"text": "Facebook"
+						}
+					],
+					"level": 1,
+					"listItem": "bullet",
+					"markDefs": [
+						{
+							"_key": "3237113088a6",
+							"_type": "link",
+							"href": "https://www.facebook.com/laila.wolf.568/?locale=fa_IR"
+						}
+					],
+					"style": "normal"
+				}
+			],
+			"contact": "contact@lailawolf.com",
+			"image": {
+				"asset": {
+					"url": "https://cdn.sanity.io/images/4yxngtwt/production/25858753181759376b980ec009bd2168d690b598-1575x1575.jpg"
+				}
+			},
+			"links": [
+				{
+					"_key": "cc65011b2d16",
+					"_type": "link",
+					"href": "https://lailawolf.com",
+					"title": "website"
+				},
+				{
+					"_key": "a6f0f7e29ede",
+					"_type": "link",
+					"href": "https://instagram.com/laila_wolf_ ",
+					"title": "instagram"
+				},
+				{
+					"_key": "86862b3ea224",
+					"_type": "link",
+					"href": "https://tiktok.com/@laila_wolf_",
+					"title": "tiktok"
+				},
+				{
+					"_key": "aeefecb604ec",
+					"_type": "link",
+					"href": "https://www.imdb.com/name/nm11617057/?ref_=ext_shr_lnk",
+					"title": "imdb"
+				},
+				{
+					"_key": "815285378ad1",
+					"_type": "link",
+					"href": "https://www.backstage.com/u/laila-wolf/",
+					"title": "backstage"
+				},
+				{
+					"_key": "c0dad46f036c",
+					"_type": "link",
+					"href": "https://www.facebook.com/laila.wolf.568/?locale=fa_IR",
+					"title": "facebook"
+				}
+			]
+		}
+	],
+	"hostname": "lailawolf",
+	"image": {
+		"asset": {
+			"url": "https://cdn.sanity.io/images/4yxngtwt/production/8a41890a7c548331ca40f8492f2eb3f3be01c160-1024x1024.png"
+		}
+	}
 }

@@ -7,7 +7,11 @@
 		href: string
 	}
 
-	let { color = '#b7c6af', size = 69, links = [] }: { color?: string; size?: number; links?: Link[] } = $props()
+	let {
+		color = '#b7c6af',
+		size = 69,
+		links = []
+	}: { color?: string; size?: number; links?: Link[] } = $props()
 
 	import Backstage from './icons/Backstage.svelte'
 	import Facebook from './icons/Facebook.svelte'
@@ -19,7 +23,10 @@
 	import Youtube from './icons/Youtube.svelte'
 	import Message from './icons/Message.svelte'
 
-	const options: { title: string; component: Component<{ color?: string; width?: number; height?: number }> }[] = [
+	const options: {
+		title: string
+		component: Component<{ color?: string; width?: number; height?: number }>
+	}[] = [
 		{ title: 'facebook', component: Facebook },
 		{ title: 'backstage', component: Backstage },
 		{ title: 'imdb', component: Imdb },

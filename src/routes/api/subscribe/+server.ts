@@ -17,8 +17,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		body: JSON.stringify({
 			email,
 			name: name ?? email.split('@')[0],
-			list_uuids: [listUuid],
-		}),
+			list_uuids: [listUuid]
+		})
 	})
 
 	if (!res.ok) {
