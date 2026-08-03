@@ -8,7 +8,7 @@ import {
 
 // A submission that should pass every layer. Each test below changes exactly
 // one field, so a failure names the layer that rejected it.
-const good = () => ({ email: 'reader@example.com', company: '' })
+const good = () => ({ email: 'reader@example.com', honeypot: '' })
 
 beforeEach(resetGuardForTests)
 
@@ -46,10 +46,10 @@ test('returns a controlled rejection for non-string json rather than throwing', 
 test('a filled honeypot fails SILENTLY, so the bot cannot tell it was caught', () => {
 	// The one check a real visitor cannot trip, which is what makes a silent
 	// rejection safe here and nowhere else.
-	for (const company of ['Acme', '  ']) {
-		const verdict = guardSubmission({ ...good(), company })
+	for (const honeypot of ['Acme', '  ']) {
+		const verdict = guardSubmission({ ...good(), honeypot })
 		assert.equal(verdict.pass, false)
-		assert.equal(verdict.silent, true, `not silent for ${JSON.stringify(company)}`)
+		assert.equal(verdict.silent, true, `not silent for ${JSON.stringify(honeypot)}`)
 	}
 })
 
@@ -59,10 +59,10 @@ test('a MISSING honeypot is refused visibly, not silently', () => {
 	// is the point — but silently would tell a real visitor on a stale page that
 	// they subscribed when they did not, which is the failure mode this whole
 	// guard is meant to avoid. Visible means a refresh fixes it.
-	for (const company of [undefined, null, 123, {}]) {
-		const verdict = guardSubmission({ ...good(), company })
-		assert.equal(verdict.pass, false, `accepted ${String(company)}`)
-		assert.equal(verdict.silent, false, `silently dropped ${String(company)}`)
+	for (const honeypot of [undefined, null, 123, {}]) {
+		const verdict = guardSubmission({ ...good(), honeypot })
+		assert.equal(verdict.pass, false, `accepted ${String(honeypot)}`)
+		assert.equal(verdict.silent, false, `silently dropped ${String(honeypot)}`)
 		assert.equal(verdict.status, 400)
 	}
 })

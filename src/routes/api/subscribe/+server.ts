@@ -2,6 +2,7 @@ import { env } from '$env/dynamic/private'
 import { error, json } from '@sveltejs/kit'
 import type { RequestEvent, RequestHandler } from './$types'
 import { guardSubmission, isRateLimited } from '$lib/server/subscribe-guard'
+import { HONEYPOT_FIELD } from '$lib/honeypot'
 
 function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): string {
 	try {
@@ -24,17 +25,17 @@ export const POST: RequestHandler = async (event) => {
 	// Unparseable bodies fall through to the guard as an empty submission rather
 	// than getting their own early return, so every request takes the same path.
 	const body = await event.request.json().catch(() => null)
-	// `name` is deliberately not read. Nothing sends it — SubscribeForm posts
-	// email and company and nothing else — so the only way to populate it was a
-	// direct API call. That made it unvalidated, unbounded, attacker-controlled
-	// text, stored in listmonk and rendered into its email templates. The address
-	// local-part is all it ever supplied.
-	const fields = (body && typeof body === 'object' ? body : {}) as {
-		email?: unknown
-		company?: unknown
-	}
+	// `name` is deliberately not read. Nothing sends it — SubscribeForm posts the
+	// address and the honeypot and nothing else — so the only way to populate it
+	// was a direct API call. That made it unvalidated, unbounded,
+	// attacker-controlled text, stored in listmonk and rendered into its email
+	// templates. The address local-part is all it ever supplied.
+	const fields = (body && typeof body === 'object' ? body : {}) as Record<string, unknown>
 
-	const verdict = guardSubmission({ email: fields.email, company: fields.company })
+	const verdict = guardSubmission({
+		email: fields['email'],
+		honeypot: fields[HONEYPOT_FIELD]
+	})
 	if (!verdict.pass) {
 		// A silent rejection answers exactly like a success — same status, same
 		// body, no listmonk call. Reserved for the filled honeypot, which no real
