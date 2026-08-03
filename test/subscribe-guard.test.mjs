@@ -1,17 +1,12 @@
 import assert from 'node:assert/strict'
 import { beforeEach, test } from 'node:test'
-import {
-	MIN_SUBMIT_MS,
-	guardSubmission,
-	resetGuardForTests
-} from '../src/lib/server/subscribe-guard.ts'
+import { guardSubmission, resetGuardForTests } from '../src/lib/server/subscribe-guard.ts'
 
 // A submission that should pass every layer. Each test below changes exactly
 // one field, so a failure names the layer that rejected it.
 const good = () => ({
 	email: 'reader@example.com',
 	company: '',
-	elapsedMs: MIN_SUBMIT_MS + 1,
 	ip: '203.0.113.7',
 	now: 1_700_000_000_000
 })
@@ -43,21 +38,6 @@ test('rejects an oversized address', () => {
 	assert.equal(verdict.status, 400)
 })
 
-test('a filled honeypot fails silently, so the bot cannot tell it was caught', () => {
-	const verdict = guardSubmission({ ...good(), company: 'Acme' })
-	assert.equal(verdict.pass, false)
-	assert.equal(verdict.silent, true)
-})
-
-test('rejects a submission with no elapsed count — it did not come from the form', () => {
-	const cases = [undefined, NaN, Infinity, 'soon']
-	cases.forEach((elapsedMs, i) => {
-		const verdict = guardSubmission({ ...good(), elapsedMs, ip: `198.51.100.${i}` })
-		assert.equal(verdict.pass, false, `accepted ${String(elapsedMs)}`)
-		assert.equal(verdict.silent, true)
-	})
-})
-
 test('returns a controlled rejection for non-string json rather than throwing', () => {
 	// The `as` cast at the call site is erased at runtime, so the body can hold
 	// anything at all. Before these were type-checked, {"email":123} reached
@@ -72,22 +52,31 @@ test('returns a controlled rejection for non-string json rather than throwing', 
 	assert.equal(guardSubmission({ ...good(), company: '  ', ip: '192.0.2.5' }).silent, true)
 })
 
+test('a filled honeypot fails silently, so the bot cannot tell it was caught', () => {
+	const verdict = guardSubmission({ ...good(), company: 'Acme' })
+	assert.equal(verdict.pass, false)
+	assert.equal(verdict.silent, true)
+})
+
+test('accepts a submission with no honeypot field at all', () => {
+	// A page that was already open when a deploy lands still posts the old
+	// payload. Rejecting an ABSENT honeypot would fail those visitors silently —
+	// they would be told they subscribed and never be. Absent is tolerated;
+	// present-and-non-empty is not.
+	const { company, ...withoutHoneypot } = good()
+	void company
+	assert.equal(guardSubmission(withoutHoneypot).pass, true)
+})
+
 test('counts every request toward the limit, whatever layer would catch it', () => {
 	const now = 1_700_000_000_000
 	// Five malformed submissions. Each is rejected on shape — and each still
 	// ticks the counter, which is the whole point of the rate limit running
 	// first. Were it last, these five would return early without counting and
-	// the sixth would come back 400, meaning a bot sending garbage (or bare
-	// {"email":"..."} with no elapsed count) could spray the endpoint forever
-	// without ever being limited.
+	// the sixth would come back 400, meaning a bot sending garbage could spray
+	// the endpoint forever without ever being limited.
 	for (let i = 0; i < 5; i++) guardSubmission({ ...good(), email: 'nope', now: now + i })
 	assert.equal(guardSubmission({ ...good(), now: now + 5 }).status, 429)
-})
-
-test('rejects a submission faster than a human, and accepts one at the threshold', () => {
-	assert.equal(guardSubmission({ ...good(), elapsedMs: 40 }).pass, false)
-	assert.equal(guardSubmission({ ...good(), elapsedMs: MIN_SUBMIT_MS - 1 }).pass, false)
-	assert.equal(guardSubmission({ ...good(), elapsedMs: MIN_SUBMIT_MS }).pass, true)
 })
 
 test('rate-limits a burst from one address, and lets a different one through', () => {

@@ -5,34 +5,34 @@
 // only check was `if (!email)`, which meant `{"email":"x"}` was a valid
 // submission and anything gmail-shaped went straight onto the list.
 //
-// Four layers, deliberately different in KIND: a bot that defeats one layer
+// Three layers, deliberately different in KIND: a bot that defeats one layer
 // usually defeats every other layer of the same kind.
 //
 //   rate limit  every request from one address, whatever shape it takes
 //   shape       a malformed or oversized address never reaches listmonk
 //   honeypot    a field only an automated filler will populate
-//   time-trap   nobody finds this form and submits it inside 1.5 seconds
 //
-// The rate limit runs FIRST, and the order is load-bearing. Every other layer
-// returns early, so anything placed after them never sees the requests they
-// catch — and the case the rate limit exists for, a bot skipping the form and
-// POSTing this endpoint directly, sends no elapsed count, so the time-trap
-// would swallow it before the counter ever ticked. Counting first is what
-// makes the layer do the job it is here to do.
+// The rate limit runs FIRST, and the order is load-bearing. The layers below
+// it return early, so a check placed after them never sees the requests they
+// caught. Counting first is what lets it limit an abusive address whatever
+// shape its requests take — including bodies that are not even valid JSON,
+// which the route hands through rather than rejecting on its own.
+//
+// A SILENT rejection is only safe for a check a real person cannot trip. The
+// honeypot qualifies: nobody fills an off-screen field. A submit-timing trap
+// does not, which is why there isn't one here — it was written, then removed
+// once it turned out a password manager filling the field can beat any
+// human-plausible threshold, and any already-open page would trip it the
+// instant a deploy changed the payload. Both failures end with a real
+// subscriber being told they joined and silently not joining, which is worse
+// than the handful of bots the layer would have caught. What it defended that
+// the others do not — a bare {"email":"..."} POST straight at this endpoint,
+// skipping the form — is now covered only by the rate limit above.
 //
 // No SvelteKit imports on purpose: everything here is a pure function of its
 // arguments, so the whole guard is testable without a request or a server.
 
 export const MAX_EMAIL_LENGTH = 254
-
-// 1.5s, not the 3s sixtom uses, because the failure is asymmetric here: a
-// time-trap rejection is SILENT, so a real person who trips it is told they
-// subscribed and never does. Bots submit in tens of milliseconds, so 1.5s
-// already clears them by more than an order of magnitude, and no human lands
-// on a page, finds the field, fills it — autofill included — and clicks inside
-// it. Buying a wider margin against bots by silently losing subscribers is the
-// wrong trade.
-export const MIN_SUBMIT_MS = 1500
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const RATE_LIMIT_WINDOW_MS = 60_000
@@ -74,17 +74,15 @@ export type GuardVerdict =
 	| { pass: false; silent: false; status: number; message: string }
 
 export function guardSubmission(input: {
-	// These three are `unknown`, not string/number, and that is the point. They
-	// arrive off a parsed JSON body, where the `as` cast at the call site is
-	// erased at compile time and guarantees nothing. Declaring them as strings
-	// made `{"email":123}` a TypeError inside `.trim()` — a 500 thrown by the
-	// layer whose entire job is to return controlled rejections. `unknown`
-	// makes the runtime check impossible to forget.
+	// Both are `unknown`, not string, and that is the point. They arrive off a
+	// parsed JSON body, where the `as` cast at the call site is erased at
+	// compile time and guarantees nothing. Declaring them as strings made
+	// `{"email":123}` a TypeError inside `.trim()` — a 500 thrown by the layer
+	// whose entire job is to return controlled rejections. `unknown` makes the
+	// runtime check impossible to forget.
 	email: unknown
 	/** Honeypot. Named `company` because that is what a field-filler expects. */
 	company?: unknown
-	/** Milliseconds the visitor had the form open. See the note below. */
-	elapsedMs?: unknown
 	ip: string
 	/** Injectable so the tests do not have to sleep. */
 	now?: number
@@ -105,38 +103,12 @@ export function guardSubmission(input: {
 		return { pass: false, silent: false, status: 400, message: 'invalid email' }
 	}
 
-	// The form always posts an empty string. Absent is tolerated so a stale
-	// cached bundle still works; anything else — text, whitespace, or a value
-	// that is not a string at all — means something other than this form filled
-	// it. Compared rather than trimmed, so `"  "` is caught too.
+	// The form always posts an empty string. Absent is tolerated, which is what
+	// keeps a page that was already open when a deploy landed from breaking;
+	// anything else — text, whitespace, or a value that is not a string at all
+	// — means something other than this form filled it. Compared rather than
+	// trimmed, so `"  "` is caught too.
 	if (input.company !== undefined && input.company !== '') {
-		return { pass: false, silent: true }
-	}
-
-	// The client sends ELAPSED time, not the timestamp it started at. Comparing
-	// a browser clock against the server's would silently drop every visitor
-	// whose clock runs fast — they would look like they submitted before they
-	// arrived. A bot can forge an elapsed count exactly as easily as a start
-	// time, so trusting the client's own subtraction costs nothing and removes
-	// a whole class of false rejection.
-	//
-	// Unconditional, unlike sixtom's version: that form is progressive
-	// enhancement and has to survive JS never running. This one only ever
-	// submits through fetch, so a request with no elapsed count did not come
-	// from the form.
-	//
-	// Known ceiling, kept deliberately: this layer is entirely client-asserted.
-	// A bot that reads the bundle can post `elapsedMs: 2000` and walk through
-	// it. Defeating that properly needs a server-issued nonce, which is a
-	// round-trip and a cookie to maintain for a newsletter box taking about one
-	// bot a week. What this does buy is the common case — a script that fills
-	// the visible field and submits immediately — for four lines and no
-	// infrastructure. The rate limit above is the layer that does not depend on
-	// the client telling the truth.
-	if (typeof input.elapsedMs !== 'number' || !Number.isFinite(input.elapsedMs)) {
-		return { pass: false, silent: true }
-	}
-	if (input.elapsedMs < MIN_SUBMIT_MS) {
 		return { pass: false, silent: true }
 	}
 

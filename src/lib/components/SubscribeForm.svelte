@@ -9,12 +9,6 @@
 	let status = $state<'idle' | 'submitting' | 'ok' | 'error'>('idle')
 	let message = $state('')
 
-	// Set when the component initialises in the browser, so what the server
-	// receives is an elapsed COUNT rather than a start time — see the note in
-	// subscribe-guard.ts on why comparing browser clocks to the server's
-	// silently drops visitors whose clock runs fast.
-	const mountedAt = Date.now()
-
 	// HTML5 valid + non-empty
 	let isValid = $derived(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
 
@@ -32,7 +26,7 @@
 			const res = await fetch(endpoint, {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ email, company, elapsedMs: Date.now() - mountedAt })
+				body: JSON.stringify({ email, company })
 			})
 			if (!res.ok) throw new Error(String(res.status))
 			status = 'ok'

@@ -8,26 +8,33 @@ function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): st
 		return event.getClientAddress() || 'unknown'
 	} catch {
 		// Some adapters have no address to give; the proxy header is the fallback.
+		// Best-effort only — a raw header is caller-supplied and spoofable, so a
+		// determined bot can rotate it. The platform address is the trustworthy one.
 		return event.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
 	}
 }
 
 export const POST: RequestHandler = async (event) => {
+	// A body that is not valid JSON, or is not an object, is handed to the guard
+	// as empty rather than rejected here. Returning early would answer before the
+	// rate limiter ran, so a flood of malformed bodies would never count against
+	// the sender — the exact invariant the guard's ordering exists to hold.
 	const body = await event.request.json().catch(() => null)
-	if (!body || typeof body !== 'object') error(400, 'invalid body')
-
-	// `name` is deliberately not read from the body. Nothing sends it —
-	// SubscribeForm posts email, company and elapsedMs and nothing else — so the
-	// only way to populate it was a direct API call. That made it unvalidated,
-	// unbounded, attacker-controlled text, stored in listmonk and rendered into
-	// its email templates. The address local-part is all it ever supplied.
-	const { email, company, elapsedMs } = body as {
-		email?: string
-		company?: string
-		elapsedMs?: number
+	// `name` is deliberately not read. Nothing sends it — SubscribeForm posts
+	// email and company and nothing else — so the only way to populate it was a
+	// direct API call. That made it unvalidated, unbounded, attacker-controlled
+	// text, stored in listmonk and rendered into its email templates. The address
+	// local-part is all it ever supplied.
+	const fields = (body && typeof body === 'object' ? body : {}) as {
+		email?: unknown
+		company?: unknown
 	}
 
-	const verdict = guardSubmission({ email, company, elapsedMs, ip: clientIp(event) })
+	const verdict = guardSubmission({
+		email: fields.email,
+		company: fields.company,
+		ip: clientIp(event)
+	})
 	if (!verdict.pass) {
 		// A silent rejection answers exactly like a success — same status, same
 		// body, no listmonk call. A bot that gets a distinguishable response
