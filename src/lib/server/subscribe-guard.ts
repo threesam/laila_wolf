@@ -10,7 +10,7 @@
 //
 //   shape       a malformed or oversized address never reaches listmonk
 //   honeypot    a field only an automated filler will populate
-//   time-trap   nobody reads this form and submits it inside three seconds
+//   time-trap   nobody finds this form and submits it inside 1.5 seconds
 //   rate limit  the only layer still standing if a bot skips the form and
 //               POSTs this endpoint directly
 //
