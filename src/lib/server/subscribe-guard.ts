@@ -5,14 +5,20 @@
 // only check was `if (!email)`, which meant `{"email":"x"}` was a valid
 // submission and anything gmail-shaped went straight onto the list.
 //
-// Four layers, cheapest first, deliberately different in KIND: a bot that
-// defeats one layer usually defeats every other layer of the same kind.
+// Four layers, deliberately different in KIND: a bot that defeats one layer
+// usually defeats every other layer of the same kind.
 //
+//   rate limit  every request from one address, whatever shape it takes
 //   shape       a malformed or oversized address never reaches listmonk
 //   honeypot    a field only an automated filler will populate
 //   time-trap   nobody finds this form and submits it inside 1.5 seconds
-//   rate limit  the only layer still standing if a bot skips the form and
-//               POSTs this endpoint directly
+//
+// The rate limit runs FIRST, and the order is load-bearing. Every other layer
+// returns early, so anything placed after them never sees the requests they
+// catch — and the case the rate limit exists for, a bot skipping the form and
+// POSTing this endpoint directly, sends no elapsed count, so the time-trap
+// would swallow it before the counter ever ticked. Counting first is what
+// makes the layer do the job it is here to do.
 //
 // No SvelteKit imports on purpose: everything here is a pure function of its
 // arguments, so the whole guard is testable without a request or a server.
@@ -80,6 +86,12 @@ export function guardSubmission(input: {
 	const now = input.now ?? Date.now()
 	const email = (input.email ?? '').trim()
 
+	// First, so the counter sees every request rather than only the ones the
+	// layers below let through. See the ordering note in the header.
+	if (isRateLimited(input.ip, now)) {
+		return { pass: false, silent: false, status: 429, message: 'too many requests' }
+	}
+
 	if (!email) {
 		return { pass: false, silent: false, status: 400, message: 'email required' }
 	}
@@ -107,10 +119,6 @@ export function guardSubmission(input: {
 	}
 	if (input.elapsedMs < MIN_SUBMIT_MS) {
 		return { pass: false, silent: true }
-	}
-
-	if (isRateLimited(input.ip, now)) {
-		return { pass: false, silent: false, status: 429, message: 'too many requests' }
 	}
 
 	return { pass: true, email }

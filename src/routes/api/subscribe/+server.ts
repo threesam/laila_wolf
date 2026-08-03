@@ -16,9 +16,13 @@ export const POST: RequestHandler = async (event) => {
 	const body = await event.request.json().catch(() => null)
 	if (!body || typeof body !== 'object') error(400, 'invalid body')
 
-	const { email, name, company, elapsedMs } = body as {
+	// `name` is deliberately not read from the body. Nothing sends it —
+	// SubscribeForm posts email, company and elapsedMs and nothing else — so the
+	// only way to populate it was a direct API call. That made it unvalidated,
+	// unbounded, attacker-controlled text, stored in listmonk and rendered into
+	// its email templates. The address local-part is all it ever supplied.
+	const { email, company, elapsedMs } = body as {
 		email?: string
-		name?: string
 		company?: string
 		elapsedMs?: number
 	}
@@ -41,7 +45,7 @@ export const POST: RequestHandler = async (event) => {
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify({
 			email: verdict.email,
-			name: name ?? verdict.email.split('@')[0],
+			name: verdict.email.split('@')[0],
 			list_uuids: [listUuid]
 		})
 	})

@@ -25,12 +25,15 @@ test('passes a real submission and hands back the trimmed address', () => {
 })
 
 test('rejects a missing or malformed address before listmonk sees it', () => {
-	for (const email of [undefined, '', '   ', 'x', 'no-at-sign.com', 'two@@at.com', 'a@b']) {
-		const verdict = guardSubmission({ ...good(), email })
+	// A distinct address per case. The rate limit runs first now, so sharing one
+	// would make the sixth case come back 429 and stop testing shape at all.
+	const cases = [undefined, '', '   ', 'x', 'no-at-sign.com', 'two@@at.com', 'a@b']
+	cases.forEach((email, i) => {
+		const verdict = guardSubmission({ ...good(), email, ip: `203.0.113.${i}` })
 		assert.equal(verdict.pass, false, `accepted ${JSON.stringify(email)}`)
 		assert.equal(verdict.silent, false)
 		assert.equal(verdict.status, 400)
-	}
+	})
 })
 
 test('rejects an oversized address', () => {
@@ -47,11 +50,24 @@ test('a filled honeypot fails silently, so the bot cannot tell it was caught', (
 })
 
 test('rejects a submission with no elapsed count — it did not come from the form', () => {
-	for (const elapsedMs of [undefined, NaN, Infinity, 'soon']) {
-		const verdict = guardSubmission({ ...good(), elapsedMs })
+	const cases = [undefined, NaN, Infinity, 'soon']
+	cases.forEach((elapsedMs, i) => {
+		const verdict = guardSubmission({ ...good(), elapsedMs, ip: `198.51.100.${i}` })
 		assert.equal(verdict.pass, false, `accepted ${String(elapsedMs)}`)
 		assert.equal(verdict.silent, true)
-	}
+	})
+})
+
+test('counts every request toward the limit, whatever layer would catch it', () => {
+	const now = 1_700_000_000_000
+	// Five malformed submissions. Each is rejected on shape — and each still
+	// ticks the counter, which is the whole point of the rate limit running
+	// first. Were it last, these five would return early without counting and
+	// the sixth would come back 400, meaning a bot sending garbage (or bare
+	// {"email":"..."} with no elapsed count) could spray the endpoint forever
+	// without ever being limited.
+	for (let i = 0; i < 5; i++) guardSubmission({ ...good(), email: 'nope', now: now + i })
+	assert.equal(guardSubmission({ ...good(), now: now + 5 }).status, 429)
 })
 
 test('rejects a submission faster than a human, and accepts one at the threshold', () => {
