@@ -9,6 +9,15 @@
 	let status = $state<'idle' | 'submitting' | 'ok' | 'error'>('idle')
 	let message = $state('')
 
+	// Honeypot. Hidden from people, filled by anything walking the DOM.
+	let company = $state('')
+
+	// Set when the component initialises in the browser, so what the server
+	// receives is an elapsed COUNT rather than a start time — see the note in
+	// subscribe-guard.ts on why comparing browser clocks to the server's
+	// silently drops visitors whose clock runs fast.
+	const mountedAt = Date.now()
+
 	// HTML5 valid + non-empty
 	let isValid = $derived(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
 
@@ -20,7 +29,7 @@
 			const res = await fetch(endpoint, {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ email })
+				body: JSON.stringify({ email, company, elapsedMs: Date.now() - mountedAt })
 			})
 			if (!res.ok) throw new Error(String(res.status))
 			status = 'ok'
@@ -41,6 +50,26 @@
 </script>
 
 <form class="flex max-w-full flex-grow flex-col gap-10 lg:flex-row lg:gap-0" onsubmit={submit}>
+	<!--
+		Honeypot. Positioned off-screen rather than `display: none` or
+		`hidden`, because the cheap bots skip anything trivially detectable as
+		hidden and the whole point is that they fill it in. aria-hidden and
+		tabindex="-1" keep it away from screen readers and the tab order, and
+		autocomplete="off" stops a browser helpfully filling it for a real
+		person — which would silently drop them.
+	-->
+	<div class="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
+		<label for="{inputId}-company" aria-hidden="true">company</label>
+		<input
+			type="text"
+			id="{inputId}-company"
+			name="company"
+			bind:value={company}
+			tabindex="-1"
+			autocomplete="off"
+			aria-hidden="true"
+		/>
+	</div>
 	<label class="relative" for={inputId}>
 		<input
 			type="email"

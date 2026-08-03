@@ -1,11 +1,36 @@
 import { env } from '$env/dynamic/private'
 import { error, json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import type { RequestEvent, RequestHandler } from './$types'
+import { guardSubmission } from '$lib/server/subscribe-guard'
 
-export const POST: RequestHandler = async ({ request }) => {
-	const { email, name } = (await request.json()) as { email?: string; name?: string }
+function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): string {
+	try {
+		return event.getClientAddress() || 'unknown'
+	} catch {
+		// Some adapters have no address to give; the proxy header is the fallback.
+		return event.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+	}
+}
 
-	if (!email) error(400, 'email required')
+export const POST: RequestHandler = async (event) => {
+	const body = await event.request.json().catch(() => null)
+	if (!body || typeof body !== 'object') error(400, 'invalid body')
+
+	const { email, name, company, elapsedMs } = body as {
+		email?: string
+		name?: string
+		company?: string
+		elapsedMs?: number
+	}
+
+	const verdict = guardSubmission({ email, company, elapsedMs, ip: clientIp(event) })
+	if (!verdict.pass) {
+		// A silent rejection answers exactly like a success — same status, same
+		// body, no listmonk call. A bot that gets a distinguishable response
+		// learns which layer caught it and tunes around it.
+		if (verdict.silent) return json({ ok: true })
+		error(verdict.status, verdict.message)
+	}
 
 	const url = env.LISTMONK_URL
 	const listUuid = env.LISTMONK_LIST_UUID
@@ -15,15 +40,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify({
-			email,
-			name: name ?? email.split('@')[0],
+			email: verdict.email,
+			name: name ?? verdict.email.split('@')[0],
 			list_uuids: [listUuid]
 		})
 	})
 
 	if (!res.ok) {
-		const body = await res.text().catch(() => '')
-		console.error('listmonk', res.status, body)
+		const text = await res.text().catch(() => '')
+		console.error('listmonk', res.status, text)
 		error(502, 'newsletter signup failed')
 	}
 
