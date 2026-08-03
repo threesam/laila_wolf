@@ -74,17 +74,23 @@ export type GuardVerdict =
 	| { pass: false; silent: false; status: number; message: string }
 
 export function guardSubmission(input: {
-	email: string | undefined
+	// These three are `unknown`, not string/number, and that is the point. They
+	// arrive off a parsed JSON body, where the `as` cast at the call site is
+	// erased at compile time and guarantees nothing. Declaring them as strings
+	// made `{"email":123}` a TypeError inside `.trim()` — a 500 thrown by the
+	// layer whose entire job is to return controlled rejections. `unknown`
+	// makes the runtime check impossible to forget.
+	email: unknown
 	/** Honeypot. Named `company` because that is what a field-filler expects. */
-	company?: string | undefined
+	company?: unknown
 	/** Milliseconds the visitor had the form open. See the note below. */
-	elapsedMs?: number | undefined
+	elapsedMs?: unknown
 	ip: string
 	/** Injectable so the tests do not have to sleep. */
 	now?: number
 }): GuardVerdict {
 	const now = input.now ?? Date.now()
-	const email = (input.email ?? '').trim()
+	const email = typeof input.email === 'string' ? input.email.trim() : ''
 
 	// First, so the counter sees every request rather than only the ones the
 	// layers below let through. See the ordering note in the header.
@@ -99,7 +105,11 @@ export function guardSubmission(input: {
 		return { pass: false, silent: false, status: 400, message: 'invalid email' }
 	}
 
-	if ((input.company ?? '').trim() !== '') {
+	// The form always posts an empty string. Absent is tolerated so a stale
+	// cached bundle still works; anything else — text, whitespace, or a value
+	// that is not a string at all — means something other than this form filled
+	// it. Compared rather than trimmed, so `"  "` is caught too.
+	if (input.company !== undefined && input.company !== '') {
 		return { pass: false, silent: true }
 	}
 
@@ -114,6 +124,15 @@ export function guardSubmission(input: {
 	// enhancement and has to survive JS never running. This one only ever
 	// submits through fetch, so a request with no elapsed count did not come
 	// from the form.
+	//
+	// Known ceiling, kept deliberately: this layer is entirely client-asserted.
+	// A bot that reads the bundle can post `elapsedMs: 2000` and walk through
+	// it. Defeating that properly needs a server-issued nonce, which is a
+	// round-trip and a cookie to maintain for a newsletter box taking about one
+	// bot a week. What this does buy is the common case — a script that fills
+	// the visible field and submits immediately — for four lines and no
+	// infrastructure. The rate limit above is the layer that does not depend on
+	// the client telling the truth.
 	if (typeof input.elapsedMs !== 'number' || !Number.isFinite(input.elapsedMs)) {
 		return { pass: false, silent: true }
 	}

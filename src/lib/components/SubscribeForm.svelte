@@ -9,9 +9,6 @@
 	let status = $state<'idle' | 'submitting' | 'ok' | 'error'>('idle')
 	let message = $state('')
 
-	// Honeypot. Hidden from people, filled by anything walking the DOM.
-	let company = $state('')
-
 	// Set when the component initialises in the browser, so what the server
 	// receives is an elapsed COUNT rather than a start time — see the note in
 	// subscribe-guard.ts on why comparing browser clocks to the server's
@@ -25,6 +22,12 @@
 		e.preventDefault()
 		if (status === 'submitting' || !isValid) return
 		status = 'submitting'
+		// The honeypot is read off the DOM at submit time rather than through
+		// bind:value. `bind:` only updates on an input event, and a filler that
+		// assigns `.value` directly — which is exactly what the cheap ones do —
+		// never fires one, so the bound copy would still read empty and the trap
+		// would pass it straight through.
+		const company = String(new FormData(e.currentTarget as HTMLFormElement).get('company') ?? '')
 		try {
 			const res = await fetch(endpoint, {
 				method: 'POST',
@@ -64,7 +67,6 @@
 			type="text"
 			id="{inputId}-company"
 			name="company"
-			bind:value={company}
 			tabindex="-1"
 			autocomplete="off"
 			aria-hidden="true"
