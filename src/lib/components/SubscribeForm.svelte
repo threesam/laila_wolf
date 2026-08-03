@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
 	import { trackEvent } from '$lib/utils/umami'
+	import { HONEYPOT_FIELD } from '$lib/honeypot'
 
 	let { endpoint = '/api/subscribe', inputId = 'email' }: { endpoint?: string; inputId?: string } =
 		$props()
@@ -16,11 +17,19 @@
 		e.preventDefault()
 		if (status === 'submitting' || !isValid) return
 		status = 'submitting'
+		// The honeypot is read off the DOM at submit time rather than through
+		// bind:value. `bind:` only updates on an input event, and a filler that
+		// assigns `.value` directly — which is exactly what the cheap ones do —
+		// never fires one, so the bound copy would still read empty and the trap
+		// would pass it straight through.
+		const honeypot = String(
+			new FormData(e.currentTarget as HTMLFormElement).get(HONEYPOT_FIELD) ?? ''
+		)
 		try {
 			const res = await fetch(endpoint, {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ email })
+				body: JSON.stringify({ email, [HONEYPOT_FIELD]: honeypot })
 			})
 			if (!res.ok) throw new Error(String(res.status))
 			status = 'ok'
@@ -34,13 +43,34 @@
 		} catch (err) {
 			console.error(err)
 			status = 'error'
-			message = 'Something went wrong — try again later.'
+			// Names the recovery, because one of the server's refusals is "this page
+			// predates the current deploy" and a refresh is the whole fix for it.
+			message = 'Something went wrong — refresh and try again.'
 			trackEvent('newsletter-error')
 		}
 	}
 </script>
 
 <form class="flex max-w-full flex-grow flex-col gap-10 lg:flex-row lg:gap-0" onsubmit={submit}>
+	<!--
+		Honeypot. Positioned off-screen rather than `display: none` or
+		`hidden`, because the cheap bots skip anything trivially detectable as
+		hidden and the whole point is that they fill it in. aria-hidden and
+		tabindex="-1" keep it away from screen readers and the tab order, and
+		autocomplete="off" stops a browser helpfully filling it for a real
+		person — which would silently drop them.
+	-->
+	<div class="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
+		<label for="{inputId}-{HONEYPOT_FIELD}" aria-hidden="true">referral code</label>
+		<input
+			type="text"
+			id="{inputId}-{HONEYPOT_FIELD}"
+			name={HONEYPOT_FIELD}
+			tabindex="-1"
+			autocomplete="off"
+			aria-hidden="true"
+		/>
+	</div>
 	<label class="relative" for={inputId}>
 		<input
 			type="email"
