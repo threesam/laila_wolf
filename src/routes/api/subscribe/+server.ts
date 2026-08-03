@@ -4,15 +4,22 @@ import type { RequestEvent, RequestHandler } from './$types'
 import { guardSubmission, isRateLimited } from '$lib/server/subscribe-guard'
 import { HONEYPOT_FIELD } from '$lib/honeypot'
 
+// adapter-vercel implements getClientAddress() by returning the RAW
+// x-forwarded-for header, which can be a proxy chain rather than one address.
+// Keying the limiter on the whole chain string would fragment a single client's
+// bucket across different proxy paths, so both paths take the first entry — the
+// originating client — rather than only the fallback doing so.
+//
+// Spoofability is a known ceiling either way: the header is caller-supplied
+// unless the platform edge overwrites it, and any IP-keyed limiter is defeated
+// by a distributed sender regardless.
 function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): string {
+	const firstAddress = (value: string | null | undefined) => value?.split(',')[0]?.trim() || ''
 	try {
-		return event.getClientAddress() || 'unknown'
+		return firstAddress(event.getClientAddress()) || 'unknown'
 	} catch {
 		// Some adapters have no address to give; the proxy header is the fallback.
-		// Best-effort only — a raw header is caller-supplied and spoofable, so a
-		// determined bot can rotate it into fresh buckets. The platform address is
-		// the trustworthy one; this is the degraded path, not the normal one.
-		return event.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+		return firstAddress(event.request.headers.get('x-forwarded-for')) || 'unknown'
 	}
 }
 
