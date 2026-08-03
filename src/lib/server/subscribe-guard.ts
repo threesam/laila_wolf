@@ -12,22 +12,28 @@
 //   shape       a malformed or oversized address never reaches listmonk
 //   honeypot    a field only an automated filler will populate
 //
-// The rate limit runs FIRST, and the order is load-bearing. The layers below
-// it return early, so a check placed after them never sees the requests they
-// caught. Counting first is what lets it limit an abusive address whatever
-// shape its requests take — including bodies that are not even valid JSON,
-// which the route hands through rather than rejecting on its own.
+// The rate limit is a REQUEST-level concern and the other two are PAYLOAD-level,
+// so they are separate exports. The route calls isRateLimited() before it reads
+// the body at all: counting after the parse meant a flood of huge or malformed
+// bodies bought parse work before anything throttled it, and an unparseable body
+// was answered without ever being counted.
 //
-// A SILENT rejection is only safe for a check a real person cannot trip. The
-// honeypot qualifies: nobody fills an off-screen field. A submit-timing trap
-// does not, which is why there isn't one here — it was written, then removed
-// once it turned out a password manager filling the field can beat any
-// human-plausible threshold, and any already-open page would trip it the
-// instant a deploy changed the payload. Both failures end with a real
-// subscriber being told they joined and silently not joining, which is worse
-// than the handful of bots the layer would have caught. What it defended that
-// the others do not — a bare {"email":"..."} POST straight at this endpoint,
-// skipping the form — is now covered only by the rate limit above.
+// SILENT vs VISIBLE rejection is the other line that matters here, and it is not
+// about severity — it is about who can trip the check.
+//
+//   silent   only for a check a real person CANNOT trip. A filled honeypot is
+//            the only one that qualifies: nobody types into an off-screen field.
+//            The bot gets a normal 200 and learns nothing.
+//   visible  everything else, including a MISSING honeypot. A page that was
+//            already open when this deployed still posts the old payload, and a
+//            direct API caller sends no honeypot either. Answering those
+//            silently would tell a real visitor they subscribed when they did
+//            not; an error they can recover from with a refresh is strictly
+//            better, and it still refuses the direct caller.
+//
+// A submit-timing trap was written and then removed: a password manager filling
+// the field can beat any human-plausible threshold, and it fails silently, so it
+// could lose real subscribers invisibly to catch bots the honeypot already gets.
 //
 // No SvelteKit imports on purpose: everything here is a pure function of its
 // arguments, so the whole guard is testable without a request or a server.
@@ -50,7 +56,12 @@ export function resetGuardForTests(): void {
 	requestLog.clear()
 }
 
-function isRateLimited(ip: string, now: number): boolean {
+/**
+ * Records this attempt and reports whether the address is now over its limit.
+ * Call it once per request, before any other work — it is what makes the count
+ * cover every request rather than only the ones that parse.
+ */
+export function isRateLimited(ip: string, now: number = Date.now()): boolean {
 	if (requestLog.size > RATE_LIMIT_SWEEP_AT) {
 		for (const [key, stamps] of requestLog) {
 			const fresh = stamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS)
@@ -68,8 +79,7 @@ export type GuardVerdict =
 	// Carries the trimmed address so the caller sends the value that was
 	// actually validated, rather than re-deriving it from the raw body.
 	| { pass: true; email: string }
-	// Caller returns a normal 200 without calling listmonk. The bot cannot
-	// learn which layer caught it, so it has nothing to tune against.
+	// Caller returns a normal 200 without calling listmonk.
 	| { pass: false; silent: true }
 	| { pass: false; silent: false; status: number; message: string }
 
@@ -82,19 +92,9 @@ export function guardSubmission(input: {
 	// runtime check impossible to forget.
 	email: unknown
 	/** Honeypot. Named `company` because that is what a field-filler expects. */
-	company?: unknown
-	ip: string
-	/** Injectable so the tests do not have to sleep. */
-	now?: number
+	company: unknown
 }): GuardVerdict {
-	const now = input.now ?? Date.now()
 	const email = typeof input.email === 'string' ? input.email.trim() : ''
-
-	// First, so the counter sees every request rather than only the ones the
-	// layers below let through. See the ordering note in the header.
-	if (isRateLimited(input.ip, now)) {
-		return { pass: false, silent: false, status: 429, message: 'too many requests' }
-	}
 
 	if (!email) {
 		return { pass: false, silent: false, status: 400, message: 'email required' }
@@ -103,12 +103,16 @@ export function guardSubmission(input: {
 		return { pass: false, silent: false, status: 400, message: 'invalid email' }
 	}
 
-	// The form always posts an empty string. Absent is tolerated, which is what
-	// keeps a page that was already open when a deploy landed from breaking;
-	// anything else — text, whitespace, or a value that is not a string at all
-	// — means something other than this form filled it. Compared rather than
-	// trimmed, so `"  "` is caught too.
-	if (input.company !== undefined && input.company !== '') {
+	// The form always posts a string, empty when untouched. Anything else did not
+	// come from this form: a direct API call that never knew the field existed,
+	// or a page open since before this deployed. Visible, so a stale page shows a
+	// recoverable error rather than a false success — see the header.
+	if (typeof input.company !== 'string') {
+		return { pass: false, silent: false, status: 400, message: 'stale form, please refresh' }
+	}
+	// Present and non-empty means a filler touched it. Compared rather than
+	// trimmed, so `"  "` is caught too. The only silent rejection here.
+	if (input.company !== '') {
 		return { pass: false, silent: true }
 	}
 

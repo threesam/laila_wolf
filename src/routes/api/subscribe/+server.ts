@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private'
 import { error, json } from '@sveltejs/kit'
 import type { RequestEvent, RequestHandler } from './$types'
-import { guardSubmission } from '$lib/server/subscribe-guard'
+import { guardSubmission, isRateLimited } from '$lib/server/subscribe-guard'
 
 function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): string {
 	try {
@@ -9,16 +9,20 @@ function clientIp(event: Pick<RequestEvent, 'request' | 'getClientAddress'>): st
 	} catch {
 		// Some adapters have no address to give; the proxy header is the fallback.
 		// Best-effort only — a raw header is caller-supplied and spoofable, so a
-		// determined bot can rotate it. The platform address is the trustworthy one.
+		// determined bot can rotate it into fresh buckets. The platform address is
+		// the trustworthy one; this is the degraded path, not the normal one.
 		return event.request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
 	}
 }
 
 export const POST: RequestHandler = async (event) => {
-	// A body that is not valid JSON, or is not an object, is handed to the guard
-	// as empty rather than rejected here. Returning early would answer before the
-	// rate limiter ran, so a flood of malformed bodies would never count against
-	// the sender — the exact invariant the guard's ordering exists to hold.
+	// Before the body is read at all. Parsing first meant a flood of huge or
+	// malformed bodies bought parse work before anything throttled it, and an
+	// unparseable body was answered without ever being counted.
+	if (isRateLimited(clientIp(event))) error(429, 'too many requests')
+
+	// Unparseable bodies fall through to the guard as an empty submission rather
+	// than getting their own early return, so every request takes the same path.
 	const body = await event.request.json().catch(() => null)
 	// `name` is deliberately not read. Nothing sends it — SubscribeForm posts
 	// email and company and nothing else — so the only way to populate it was a
@@ -30,15 +34,12 @@ export const POST: RequestHandler = async (event) => {
 		company?: unknown
 	}
 
-	const verdict = guardSubmission({
-		email: fields.email,
-		company: fields.company,
-		ip: clientIp(event)
-	})
+	const verdict = guardSubmission({ email: fields.email, company: fields.company })
 	if (!verdict.pass) {
 		// A silent rejection answers exactly like a success — same status, same
-		// body, no listmonk call. A bot that gets a distinguishable response
-		// learns which layer caught it and tunes around it.
+		// body, no listmonk call. Reserved for the filled honeypot, which no real
+		// visitor can trip; everything else answers visibly so a person who hits
+		// it can recover.
 		if (verdict.silent) return json({ ok: true })
 		error(verdict.status, verdict.message)
 	}
