@@ -35,7 +35,8 @@ exist mainly to catch the failure that took the site down for a week in July
 
 1. Visit `/`
 2. Expect `#subscribe` to contain an email input and a submit button
-3. Expect the submit button to be enabled
+3. Expect the submit button to be enabled once a valid address is typed (it is
+   disabled while the input is empty or invalid, by design)
 4. Do NOT submit — `/api/subscribe` posts to a live mailing list
 
 ## Notes
