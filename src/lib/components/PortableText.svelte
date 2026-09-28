@@ -25,7 +25,7 @@
 	<PortableText value={normalized} components={{ block: blockStyles }} />
 </section>
 
-<style lang="scss">
+<style lang="postcss">
 	@reference '../../app.css';
 
 	:global(.portable-text) {
