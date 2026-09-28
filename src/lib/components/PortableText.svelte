@@ -1,11 +1,28 @@
 <script lang="ts">
-	import { PortableText, type InputValue } from '@portabletext/svelte'
+	import { DefaultBlock, PortableText, type InputValue } from '@portabletext/svelte'
+	import PtHeading from './PtHeading.svelte'
+	import { relevelHeadings } from '$lib/utils/headings'
 
 	let { blocks = [] as InputValue }: { blocks?: InputValue } = $props()
+
+	let normalized = $derived(
+		relevelHeadings(Array.isArray(blocks) ? blocks : [blocks]) as InputValue
+	)
+
+	const blockStyles = {
+		normal: DefaultBlock,
+		blockquote: DefaultBlock,
+		h1: PtHeading,
+		h2: PtHeading,
+		h3: PtHeading,
+		h4: PtHeading,
+		h5: PtHeading,
+		h6: PtHeading
+	}
 </script>
 
 <section class="portable-text mx-auto max-w-2xl">
-	<PortableText value={blocks} />
+	<PortableText value={normalized} components={{ block: blockStyles }} />
 </section>
 
 <style lang="scss">
