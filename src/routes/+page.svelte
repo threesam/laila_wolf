@@ -27,20 +27,19 @@
 	// Filter out the circular reference to this page. new URL() throws on an empty
 	// or missing href, and because this route is prerendered that throw would fail
 	// the build rather than one request — so a malformed link is dropped instead.
-	const links = data.settings.founders[0].links.filter(({ href }: { href: string }) => {
-		try {
-			return !new URL(href).hostname.startsWith(data.settings.hostname)
-		} catch {
-			return false
-		}
-	})
-
-	if (data.settings.founders[0].contact) {
-		links.push({
-			title: 'contact',
-			href: 'mailto:' + data.settings.founders[0].contact
+	let links = $derived.by(() => {
+		const founder = data.settings.founders[0]
+		const external = founder.links.filter(({ href }: { href: string }) => {
+			try {
+				return !new URL(href).hostname.startsWith(data.settings.hostname)
+			} catch {
+				return false
+			}
 		})
-	}
+		return founder.contact
+			? [...external, { title: 'contact', href: 'mailto:' + founder.contact }]
+			: external
+	})
 </script>
 
 <SEO
@@ -55,64 +54,68 @@
 />
 
 <!-- HERO -->
-<section
-	id="hero"
-	class="relative flex h-screen w-full items-center justify-center overflow-hidden"
->
-	<!-- Textbox: pointer events drive heroHovered, which the image, scrim, and text below all react to. -->
-	<div
-		class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-10 py-12"
-		onpointerenter={() => (heroHovered = true)}
-		onpointerleave={() => (heroHovered = false)}
+<main>
+	<section
+		id="hero"
+		class="relative flex h-screen w-full items-center justify-center overflow-hidden"
 	>
-		<a class="w-full" href="#subscribe" onclick={activateHero}>
-			<h1
-				class="font-display flex w-full justify-center gap-10 font-bold drop-shadow-lg lg:grid lg:grid-cols-2 lg:text-8xl"
-			>
-				<span
-					class="transition-colors duration-[2000ms] ease-out lg:text-right {heroHovered
-						? 'text-pink-300'
-						: 'text-gray-300'}">Laila</span
-				>
-				<span
-					class="transition-colors duration-[2000ms] ease-out lg:text-left {heroHovered
-						? 'text-pink-300'
-						: 'text-gray-300'}">Wolf</span
-				>
-			</h1>
-		</a>
-		<p
-			class="text-center text-sm font-medium uppercase tracking-[0.3em] transition-colors duration-[2000ms] ease-out lg:text-base {heroHovered
-				? 'text-pink-300'
-				: 'text-white'}"
+		<!-- Textbox: pointer events drive heroHovered, which the image, scrim, and text below all react to.
+		     role="presentation": the hover is decorative; the link inside is the control. -->
+		<div
+			role="presentation"
+			class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-10 py-12"
+			onpointerenter={() => (heroHovered = true)}
+			onpointerleave={() => (heroHovered = false)}
 		>
-			Filmmaker — ghostwriter
-		</p>
-	</div>
+			<a class="w-full" href="#subscribe" onclick={activateHero}>
+				<h1
+					class="font-display flex w-full justify-center gap-10 font-bold drop-shadow-lg lg:grid lg:grid-cols-2 lg:text-8xl"
+				>
+					<span
+						class="transition-colors duration-[2000ms] ease-out lg:text-right {heroHovered
+							? 'text-pink-300'
+							: 'text-gray-300'}">Laila</span
+					>
+					<span
+						class="transition-colors duration-[2000ms] ease-out lg:text-left {heroHovered
+							? 'text-pink-300'
+							: 'text-gray-300'}">Wolf</span
+					>
+				</h1>
+			</a>
+			<p
+				class="text-center text-sm font-medium uppercase tracking-[0.3em] transition-colors duration-[2000ms] ease-out lg:text-base {heroHovered
+					? 'text-pink-300'
+					: 'text-white'}"
+			>
+				Filmmaker — ghostwriter
+			</p>
+		</div>
 
-	<!-- Full-screen scrim — fades over 2s when textbox is hovered. -->
-	<div
-		class="bg-dark/60 pointer-events-none absolute inset-0 z-10 transition-opacity duration-[2000ms] ease-out {heroHovered
-			? 'opacity-0'
-			: 'opacity-100'}"
-	></div>
+		<!-- Full-screen scrim — fades over 2s when textbox is hovered. -->
+		<div
+			class="bg-dark/60 pointer-events-none absolute inset-0 z-10 transition-opacity duration-[2000ms] ease-out {heroHovered
+				? 'opacity-0'
+				: 'opacity-100'}"
+		></div>
 
-	<!-- Image — behind everything: grayscale → color and transparent → pink border over 2s. -->
-	<figure class="bg-dark absolute inset-0 z-0 h-full w-full p-5 sm:p-10 lg:p-20">
-		<img
-			class="h-full w-full border-2 object-cover {heroHovered
-				? 'border-pink-300'
-				: 'border-transparent grayscale'}"
-			style="transition: filter 2000ms ease-out, border-color 2000ms ease-out;"
-			src={urlFor(data.settings.image.asset.url).width(1024).auto('format').url()}
-			alt="Laila Wolf"
-			width="1024"
-			height="1024"
-			fetchpriority="high"
-			decoding="sync"
-		/>
-	</figure>
-</section>
+		<!-- Image — behind everything: grayscale → color and transparent → pink border over 2s. -->
+		<figure class="bg-dark absolute inset-0 z-0 h-full w-full p-5 sm:p-10 lg:p-20">
+			<img
+				class="h-full w-full border-2 object-cover {heroHovered
+					? 'border-pink-300'
+					: 'border-transparent grayscale'}"
+				style="transition: filter 2000ms ease-out, border-color 2000ms ease-out;"
+				src={urlFor(data.settings.image.asset.url).width(1024).auto('format').url()}
+				alt="Laila Wolf"
+				width="1024"
+				height="1024"
+				fetchpriority="high"
+				decoding="sync"
+			/>
+		</figure>
+	</section>
+</main>
 
 <!-- SUBSCRIBE + LINKS -->
 <footer>
