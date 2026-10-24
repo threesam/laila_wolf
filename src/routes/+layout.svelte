@@ -76,7 +76,7 @@
 	{/if}
 </svelte:head>
 
-<svelte:document onclick={trackOutbound}></svelte:document>
+<svelte:document onclick={trackOutbound} />
 
 <JsonLd data={personLd} />
 
