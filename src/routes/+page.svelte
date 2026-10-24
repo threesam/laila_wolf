@@ -1,10 +1,10 @@
 <script lang="ts">
 	import SEO from 'svelte-seo'
-	import Sketch from '$lib/components/Sketch.svelte'
-	import SocialLinks from '$lib/components/SocialLinks.svelte'
-	import SubscribeForm from '$lib/components/SubscribeForm.svelte'
-	import { urlFor } from '$lib/utils/sanity'
-	import { trackEvent } from '$lib/utils/umami'
+	import Sketch from '#lib/components/Sketch.svelte'
+	import SocialLinks from '#lib/components/SocialLinks.svelte'
+	import SubscribeForm from '#lib/components/SubscribeForm.svelte'
+	import { urlFor } from '#lib/utils/sanity.js'
+	import { trackEvent } from '#lib/utils/umami.js'
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()

@@ -1,8 +1,8 @@
-import { env } from '$env/dynamic/private'
-import { error, json } from '@sveltejs/kit'
+import { LISTMONK_URL, LISTMONK_LIST_UUID } from '$app/env/private'
+import { error } from '@sveltejs/kit'
 import type { RequestEvent, RequestHandler } from './$types'
-import { guardSubmission, isRateLimited } from '$lib/server/subscribe-guard'
-import { HONEYPOT_FIELD } from '$lib/honeypot'
+import { guardSubmission, isRateLimited } from '#lib/server/subscribe-guard.js'
+import { HONEYPOT_FIELD } from '#lib/honeypot.js'
 
 // adapter-vercel implements getClientAddress() by returning the RAW
 // x-forwarded-for header, which can be a proxy chain rather than one address.
@@ -48,12 +48,13 @@ export const POST: RequestHandler = async (event) => {
 		// body, no listmonk call. Reserved for the filled honeypot, which no real
 		// visitor can trip; everything else answers visibly so a person who hits
 		// it can recover.
-		if (verdict.silent) return json({ ok: true })
+		if (verdict.silent) return Response.json({ ok: true })
 		error(verdict.status, verdict.message)
 	}
 
-	const url = env.LISTMONK_URL
-	const listUuid = env.LISTMONK_LIST_UUID
+	const url = LISTMONK_URL
+	const listUuid = LISTMONK_LIST_UUID
+
 	if (!url || !listUuid) error(500, 'newsletter not configured')
 
 	const res = await fetch(`${url.replace(/\/$/, '')}/api/public/subscription`, {
@@ -72,5 +73,5 @@ export const POST: RequestHandler = async (event) => {
 		error(502, 'newsletter signup failed')
 	}
 
-	return json({ ok: true })
+	return Response.json({ ok: true })
 }

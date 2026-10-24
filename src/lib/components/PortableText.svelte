@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DefaultBlock, PortableText, type InputValue } from '@portabletext/svelte'
 	import PtHeading from './PtHeading.svelte'
-	import { relevelHeadings } from '$lib/utils/headings'
+	import { relevelHeadings } from '#lib/utils/headings.js'
 
 	let { blocks = [] as InputValue }: { blocks?: InputValue } = $props()
 

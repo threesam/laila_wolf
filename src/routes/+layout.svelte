@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css'
-	import { dev } from '$app/environment'
+	import { dev } from '$app/env'
 	import { inject } from '@vercel/analytics'
-	import { page } from '$app/stores'
-	import JsonLd from '$lib/components/JsonLd.svelte'
-	import { optimize } from '$lib/utils/img'
-	import { canonical, SITE_URL } from '$lib/utils/site'
-	import { trackEvent } from '$lib/utils/umami'
+	import { page } from '$app/state'
+	import JsonLd from '#lib/components/JsonLd.svelte'
+	import { optimize } from '#lib/utils/img.js'
+	import { canonical, SITE_URL } from '#lib/utils/site.js'
+	import { trackEvent } from '#lib/utils/umami.js'
 	import type { LayoutData } from './$types'
 	import type { Snippet } from 'svelte'
 
@@ -32,7 +32,7 @@
 
 	let founder = $derived(data?.settings?.founders?.[0])
 	let heroImage = $derived(optimize(data?.settings?.image?.asset?.url, { w: 1200 }))
-	let pageUrl = $derived(canonical($page.url.pathname))
+	let pageUrl = $derived(canonical(page.url.pathname))
 
 	// sameAs lists off-site profiles only — strip the site's own hostname so
 	// search engines don't see a self-reference as a peer profile.
@@ -76,7 +76,7 @@
 	{/if}
 </svelte:head>
 
-<svelte:document onclick={trackOutbound} />
+<svelte:document onclick={trackOutbound}></svelte:document>
 
 <JsonLd data={personLd} />
 

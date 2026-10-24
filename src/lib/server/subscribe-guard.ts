@@ -22,7 +22,7 @@
 // A submit-timing trap was written and then removed for failing that test: a
 // password manager can beat any human-plausible threshold, silently. The
 // honeypot field is named to avoid the same trap from the other direction —
-// `company` is an autofill target, so it is not called that. See $lib/honeypot.
+// `company` is an autofill target, so it is not called that. See #lib/honeypot.
 
 export const MAX_EMAIL_LENGTH = 254
 

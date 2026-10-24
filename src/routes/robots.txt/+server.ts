@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types'
-import { SITE_URL } from '$lib/utils/site'
+import { SITE_URL } from '#lib/utils/site.js'
 
 export const prerender = true
 

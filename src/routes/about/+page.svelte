@@ -1,8 +1,8 @@
 <script lang="ts">
-	import PortableText from '$lib/components/PortableText.svelte'
-	import Sketch from '$lib/components/Sketch.svelte'
+	import PortableText from '#lib/components/PortableText.svelte'
+	import Sketch from '#lib/components/Sketch.svelte'
 	import SEO from 'svelte-seo'
-	import { urlFor } from '$lib/utils/sanity'
+	import { urlFor } from '#lib/utils/sanity.js'
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()
