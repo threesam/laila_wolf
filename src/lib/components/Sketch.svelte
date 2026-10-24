@@ -102,11 +102,14 @@
 
 		const io = new IntersectionObserver(
 			(entries) => {
+				// Kept observing after the first start: the loop pauses while the
+				// canvas is off screen instead of drawing 200 circles a frame forever.
 				for (const e of entries) {
-					if (e.isIntersecting) {
-						start()
-						io.disconnect()
-					}
+					if (!e.isIntersecting) {
+						cancelAnimationFrame(rafId)
+						rafId = 0
+					} else if (!started) start()
+					else if (!rafId && !reduce) rafId = requestAnimationFrame(draw)
 				}
 			},
 			{ rootMargin: '200px' }
