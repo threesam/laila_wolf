@@ -26,6 +26,8 @@
 		let points: Point[] = []
 		let rafId = 0
 		let started = false
+		// The observer owns this; nothing schedules a frame while it is false.
+		let visible = false
 		let cleanups: Array<() => void> = []
 
 		const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -63,6 +65,7 @@
 		}
 
 		function draw() {
+			rafId = 0
 			if (!ctx) return
 			ctx.fillStyle = '#111'
 			ctx.fillRect(0, 0, width, height)
@@ -77,7 +80,7 @@
 				ctx.fill()
 				ctx.stroke()
 			}
-			if (!reduce) rafId = requestAnimationFrame(draw)
+			if (!reduce && visible) rafId = requestAnimationFrame(draw)
 		}
 
 		function start() {
@@ -89,7 +92,7 @@
 			cleanups.push(() => window.removeEventListener('resize', onResize))
 			// First paint via rIC so we don't compete with LCP; fall back to setTimeout.
 			const kickoff = () => {
-				rafId = requestAnimationFrame(draw)
+				if (visible && !rafId) rafId = requestAnimationFrame(draw)
 			}
 			const ric = (
 				window as Window & {
@@ -104,12 +107,14 @@
 			(entries) => {
 				// Kept observing after the first start: the loop pauses while the
 				// canvas is off screen instead of drawing 200 circles a frame forever.
+				// Reduced motion repaints its one static frame on each re-entry.
 				for (const e of entries) {
-					if (!e.isIntersecting) {
+					visible = e.isIntersecting
+					if (!visible) {
 						cancelAnimationFrame(rafId)
 						rafId = 0
 					} else if (!started) start()
-					else if (!rafId && !reduce) rafId = requestAnimationFrame(draw)
+					else if (!rafId) rafId = requestAnimationFrame(draw)
 				}
 			},
 			{ rootMargin: '200px' }
