@@ -91,7 +91,10 @@
 			// reduced-motion one needs its static frame drawn again.
 			const onResize = () => {
 				resize()
-				if (reduce && visible) draw()
+				if (reduce && visible) {
+					cancelAnimationFrame(rafId)
+					draw()
+				}
 			}
 			window.addEventListener('resize', onResize)
 			cleanups.push(() => window.removeEventListener('resize', onResize))
