@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types'
-import { canonical } from '$lib/utils/site'
+import { canonical } from '#lib/utils/site.js'
 
 export const prerender = true
 

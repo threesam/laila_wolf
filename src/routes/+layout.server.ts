@@ -1,5 +1,5 @@
-import { client } from '$lib/utils/sanity'
-import fallback from '$lib/data/settings.fallback.json'
+import { client } from '#lib/utils/sanity.js'
+import fallback from '#lib/data/settings.fallback.json'
 
 // Selects only the fields the pages actually render. The previous version used
 // `...` spreads with bare `asset->` dereferences, which pulled whole asset

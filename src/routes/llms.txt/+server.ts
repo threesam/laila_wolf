@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types'
-import { client } from '$lib/utils/sanity'
-import { canonical } from '$lib/utils/site'
+import { client } from '#lib/utils/sanity.js'
+import { canonical } from '#lib/utils/site.js'
 
 export const prerender = true
 

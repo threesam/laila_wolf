@@ -1,8 +1,8 @@
 <script lang="ts">
-	import PortableText from '$lib/components/PortableText.svelte'
-	import Sketch from '$lib/components/Sketch.svelte'
+	import PortableText from '#lib/components/PortableText.svelte'
+	import Sketch from '#lib/components/Sketch.svelte'
 	import SEO from 'svelte-seo'
-	import { urlFor } from '$lib/utils/sanity'
+	import { urlFor } from '#lib/utils/sanity.js'
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()
@@ -10,7 +10,11 @@
 	let founder = $derived(data.settings.founders?.[0])
 </script>
 
-<SEO title="About — Laila Wolf" description="About Laila Wolf." />
+<SEO
+	title="About — Laila Wolf"
+	description="About Laila Wolf."
+	openGraph={{ title: 'About — Laila Wolf', description: 'About Laila Wolf.', type: 'profile' }}
+/>
 
 <main>
 	<!-- ABOUT HERO — sketch background + pink-outlined title block, 50vh -->
@@ -35,7 +39,7 @@
 					alt="Laila Wolf"
 					width="1200"
 					height="1200"
-					loading="lazy"
+					fetchpriority="high"
 					decoding="async"
 				/>
 			</figure>

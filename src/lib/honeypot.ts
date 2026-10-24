@@ -1,7 +1,7 @@
 /**
  * The honeypot's field name, shared by the form that renders it and the route
- * that reads it. It lives HERE rather than in $lib/server because the component
- * needs it too, and SvelteKit refuses a $lib/server import from client code.
+ * that reads it. It lives HERE rather than in src/lib/server because the component
+ * needs it too, and SvelteKit refuses a src/lib/server import from client code.
  *
  * Deliberately meaningless to a browser: anything an autofill heuristic
  * recognises (`company`, `organization`, `website`) risks a password manager
