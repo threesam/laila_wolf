@@ -10,7 +10,11 @@
 	let founder = $derived(data.settings.founders?.[0])
 </script>
 
-<SEO title="About — Laila Wolf" description="About Laila Wolf." />
+<SEO
+	title="About — Laila Wolf"
+	description="About Laila Wolf."
+	openGraph={{ title: 'About — Laila Wolf', description: 'About Laila Wolf.', type: 'profile' }}
+/>
 
 <main>
 	<!-- ABOUT HERO — sketch background + pink-outlined title block, 50vh -->

@@ -48,8 +48,7 @@
 	openGraph={{
 		title: 'Laila Wolf',
 		description: data.settings.description ?? 'Filmmaker.',
-		type: 'website',
-		images: [{ url: data.settings.image.asset.url }]
+		type: 'website'
 	}}
 />
 
