@@ -87,7 +87,12 @@
 			if (started) return
 			started = true
 			resize()
-			const onResize = () => resize()
+			// resize() clears the canvas; a looping canvas repaints next frame, a
+			// reduced-motion one needs its static frame drawn again.
+			const onResize = () => {
+				resize()
+				if (reduce && visible) draw()
+			}
 			window.addEventListener('resize', onResize)
 			cleanups.push(() => window.removeEventListener('resize', onResize))
 			// First paint via rIC so we don't compete with LCP; fall back to setTimeout.
@@ -123,6 +128,7 @@
 		cleanups.push(() => io.disconnect())
 
 		return () => {
+			visible = false // a pending idle kickoff must not start a loop after unmount
 			cancelAnimationFrame(rafId)
 			for (const fn of cleanups) fn()
 		}
