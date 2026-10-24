@@ -39,7 +39,7 @@
 					alt="Laila Wolf"
 					width="1200"
 					height="1200"
-					loading="lazy"
+					fetchpriority="high"
 					decoding="async"
 				/>
 			</figure>
