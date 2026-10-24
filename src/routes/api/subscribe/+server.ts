@@ -52,18 +52,15 @@ export const POST: RequestHandler = async (event) => {
 		error(verdict.status, verdict.message)
 	}
 
-	const url = LISTMONK_URL
-	const listUuid = LISTMONK_LIST_UUID
+	if (!LISTMONK_URL || !LISTMONK_LIST_UUID) error(500, 'newsletter not configured')
 
-	if (!url || !listUuid) error(500, 'newsletter not configured')
-
-	const res = await fetch(`${url.replace(/\/$/, '')}/api/public/subscription`, {
+	const res = await fetch(`${LISTMONK_URL.replace(/\/$/, '')}/api/public/subscription`, {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify({
 			email: verdict.email,
 			name: verdict.email.split('@')[0],
-			list_uuids: [listUuid]
+			list_uuids: [LISTMONK_LIST_UUID]
 		})
 	})
 
